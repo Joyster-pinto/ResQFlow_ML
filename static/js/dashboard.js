@@ -183,17 +183,30 @@ function onStationChange(stationId) {
 }
 
 // ── Condition Chips ────────────────────────────────────────────────────────
+
+// Maps data-group → CSS prefix used in active-* class names
+// Needed because JS String.replace('_','-') only replaces the FIRST underscore,
+// so 'time_of_day' → 'time-of_day' (wrong) and 'incident_type' → 'incident-type' (wrong).
+const CHIP_CSS_PREFIX = {
+    weather:       'weather',
+    time_of_day:   'time',        // CSS: active-time-auto / active-time-rush / active-time-offpeak
+    incident_type: 'incident',    // CSS: active-incident-medical / active-incident-fire
+    day_type:      'day-type',    // CSS: active-day-type-weekday
+    road_hazard:   'road-hazard', // CSS: active-road-hazard-none
+};
+
 function selectChip(el) {
-    const group = el.dataset.group;
-    const val   = el.dataset.val;
+    const group  = el.dataset.group;
+    const val    = el.dataset.val;
+    const prefix = CHIP_CSS_PREFIX[group] || group.replace(/_/g, '-');
 
     // De-activate all chips in the group
     document.querySelectorAll(`.chip[data-group="${group}"]`).forEach(c => {
         c.className = 'chip';
     });
 
-    // Activate clicked chip
-    el.classList.add(`active-${group.replace('_', '-')}-${val}`);
+    // Activate clicked chip with correct CSS class
+    el.classList.add(`active-${prefix}-${val}`);
 
     // Update conditions state
     conditions[group] = val;
@@ -421,9 +434,9 @@ function renderRoutes(data) {
     if (dijkCoords.length > 1) {
         const lls = dijkCoords.map(c => [c.lat, c.lon]);
         L.polyline(lls, {
-            color:     '#22d3ee',
-            weight:    5,
-            opacity:   0.85,
+            color:     '#00ffcc',
+            weight:    6,
+            opacity:   1.0,
             dashArray: '8 4',
             lineCap:   'round',
         }).bindTooltip('Dijkstra Route').addTo(layers.dijkstra);
@@ -432,9 +445,9 @@ function renderRoutes(data) {
     if (mlCoords.length > 1) {
         const lls = mlCoords.map(c => [c.lat, c.lon]);
         L.polyline(lls, {
-            color:   '#a78bfa',
-            weight:  5,
-            opacity: 0.9,
+            color:   '#ff1493',
+            weight:  6,
+            opacity: 1.0,
             lineCap: 'round',
         }).bindTooltip('ML Route').addTo(layers.ml);
         map.fitBounds(L.polyline(lls).getBounds(), { padding: [40, 40] });

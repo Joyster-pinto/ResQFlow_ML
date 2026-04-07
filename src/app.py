@@ -186,17 +186,30 @@ def launch_sumo_process(conditions: dict = None) -> bool:
         sumo_binary = "sumo-gui"
         logger.warning(f"sumo-gui.exe not found at {os.path.join(SUMO_HOME, 'bin')} — falling back to PATH")
 
+    # Time of day and Day type scaling
+    scale_factor = 1.0
+    tod = conditions.get("time_of_day", "auto")
+    dt  = conditions.get("day_type", "weekday")
+    
+    if tod == "rush":
+        scale_factor = 1.8   # Heavy traffic
+    elif tod == "offpeak":
+        scale_factor = 0.4   # Light traffic
+        
+    if dt == "weekend":
+        scale_factor *= 0.6  # Weekends have less traffic overall
+
     # NOTE: Only use valid sumo-gui CLI flags here.
-    # Condition effects (weather/time) are handled in the ML feature vector, NOT via SUMO flags.
     cmd = [
         sumo_binary,
         "-c", sumo_cfg,
         "--remote-port", "8813",
+        "--scale", str(round(scale_factor, 2)),
         "--start",                  # auto-start simulation
         "--quit-on-end", "false",   # keep GUI open after sim ends
     ]
 
-    logger.info(f"Launching SUMO-GUI: {' '.join(cmd)}")
+    logger.info(f"Launching SUMO-GUI: {' '.join(cmd)} (Scale: {scale_factor:.2f})")
     try:
         _sumo_proc = subprocess.Popen(
             cmd,
@@ -258,7 +271,7 @@ def connect_traci(port: int = 8813, delay: float = 8.0):
             return
 
         # Attempt TraCI connection with limited retries
-        MAX_ATTEMPTS = 10
+        MAX_ATTEMPTS = 20
         for attempt in range(1, MAX_ATTEMPTS + 1):
             try:
                 traci.init(port=port, numRetries=0)  # one shot per loop iteration
@@ -266,6 +279,12 @@ def connect_traci(port: int = 8813, delay: float = 8.0):
                 STATE["traci_connected"] = True
                 STATE["sumo_running"]    = True
                 logger.info(f"TraCI connected on port {port} (attempt {attempt})")
+                
+                # Apply physical environmental changes via TraCI
+                try:
+                    _apply_environmental_factors(STATE.get("conditions", {}))
+                except Exception as env_err:
+                    logger.error(f"Failed to apply environment factors via TraCI: {env_err}")
                 socketio.emit("status", {
                     "model_loaded":    STATE["model_loaded"],
                     "sumo_running":    True,
@@ -280,7 +299,7 @@ def connect_traci(port: int = 8813, delay: float = 8.0):
                     logger.error(f"SUMO process died during TraCI connect (attempt {attempt})")
                     break
                 logger.warning(f"TraCI attempt {attempt}/{MAX_ATTEMPTS}: {e}")
-                time.sleep(2)
+                time.sleep(3)
 
         # All attempts exhausted
         err_msg = f"Could not connect to SUMO TraCI on port {port} after {MAX_ATTEMPTS} attempts."
@@ -294,6 +313,39 @@ def connect_traci(port: int = 8813, delay: float = 8.0):
             "model_meta":      STATE["model_meta"],
             "error":           err_msg,
         })
+
+    def _apply_environmental_factors(conditions: dict):
+        import traci
+        import hashlib
+        
+        weather = conditions.get("weather", "clear")
+        hazard = conditions.get("road_hazard", "none")
+        
+        # 1. Global Weather Speed Reduction
+        speed_factor = 1.0
+        if weather == "rain":
+            speed_factor = 0.8
+        elif weather == "fog":
+            speed_factor = 0.6
+            
+        all_edges = traci.edge.getIDList()
+        # Exclude internal intersection edges (start with ':')
+        real_edges = [eid for eid in all_edges if not eid.startswith(":")]
+        
+        if speed_factor < 1.0:
+            logger.info(f"Applying weather '{weather}' -> global speed limit reduced to {speed_factor*100:.0f}%")
+            for eid in real_edges:
+                base_speed = traci.edge.getSpeed(eid)
+                traci.edge.setMaxSpeed(eid, base_speed * speed_factor)
+
+        # 2. Localized Incident / Hazard Blockages (Gridlock simulation)
+        if weather == "flood" or hazard in ["accident", "construction", "flood"]:
+            # Pick 8 major deterministic edges to completely choke
+            prone_edges = sorted(real_edges, key=lambda e: hashlib.md5(e.encode()).hexdigest())[:8]
+            logger.info(f"Simulating heavy {hazard or weather} traffic jam on 8 critical edges: {prone_edges}")
+            for eid in prone_edges:
+                # 0.5 m/s forces massive queues to build up
+                traci.edge.setMaxSpeed(eid, 0.5)
 
     t = threading.Thread(target=_do_connect, daemon=True)
     t.start()
@@ -411,8 +463,9 @@ def api_launch_sumo():
             daemon=True,
         ).start()
 
-    # Auto-connect TraCI after SUMO starts (3-second delay)
-    connect_traci(port=8813, delay=3.0)
+    # Auto-connect TraCI after SUMO starts
+    # Mysore network is ~70 MB — allow 10s for SUMO to fully parse it
+    connect_traci(port=8813, delay=10.0)
 
     return jsonify({
         "ok":      True,
@@ -454,7 +507,7 @@ def api_route():
         logger.info(f"Routing: {src_edge} → {dst_edge} | conditions={conditions}")
         result = compare_routes(src_edge, dst_edge,
                                 _ensemble if _ensemble else _model,
-                                _traci, conditions)
+                                STATE.get("vehicles", {}), conditions)
 
         # Store as active mission
         mission = {

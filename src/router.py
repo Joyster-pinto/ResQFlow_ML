@@ -140,7 +140,7 @@ def _condition_factors(conditions: dict) -> dict:
 # Feature extraction helpers
 # ---------------------------------------------------------------------------
 
-def _live_edge_features(edge_id: str, traci_module=None, conditions: dict = None) -> dict:
+def _live_edge_features(edge_id: str, live_vehicles: dict = None, conditions: dict = None) -> dict:
     """Get live TraCI edge features, or return realistic condition-aware defaults.
     When SUMO/TraCI is not connected, defaults vary meaningfully with conditions
     so that Rush vs Off-Peak, day type, and hazard actually influence routing.
@@ -174,41 +174,42 @@ def _live_edge_features(edge_id: str, traci_module=None, conditions: dict = None
         "weather_factor": factors["weather_factor"],
     }
 
-    if traci_module is None:
+    if live_vehicles is None:
         return defaults
 
-    # ── Live TraCI data — apply condition overrides on top ────────
+    # ── Live Data Calculation from Vehicle Dictionary ────────
     try:
-        import traci as tc
-        vcount = tc.edge.getLastStepVehicleNumber(edge_id)
-        speed  = tc.edge.getLastStepMeanSpeed(edge_id)
-        occ    = tc.edge.getLastStepOccupancy(edge_id)
-        wait   = tc.edge.getWaitingTime(edge_id)
-        t      = tc.simulation.getTime()
-        hour   = int((t % 86400) / 3600)
+        # Avoid direct TraCI IPC calls to prevent Dijkstra freezing
+        import datetime
+        now = datetime.datetime.now()
+        
+        edge_vehs = [v for v in live_vehicles.values() if v["edge"] == edge_id]
+        vcount = len(edge_vehs)
+        if vcount > 0:
+            avg_speed = sum(v["speed"] / 3.6 for v in edge_vehs) / vcount
+        else:
+            avg_speed = base_speed
 
-        # Apply all condition speed factors to live speed
-        adj_speed = max(speed, 0.5) * factors["speed_factor"]
+        adj_speed = max(avg_speed, 0.5) * factors["speed_factor"]
 
         # Apply hazard waiting-time penalty on top of live data
         _, hazard_wait_add, hazard_count_mult = \
             _HAZARD_MODIFIERS.get((conditions or {}).get("road_hazard", "none"),
-                                   _HAZARD_MODIFIERS["none"])
-        adj_wait  = wait  + hazard_wait_add
-        adj_count = round(vcount * hazard_count_mult)
+                                   _HAZARD_MODIFIERS["none"])   
+        
+        # Approximate waiting time based on stopped vehicles
+        stopped = sum(1 for v in edge_vehs if v["speed"] < 1.0)
+        adj_wait = (stopped * 5.0) + hazard_wait_add
 
-        if factors["peak_override"] is not None:
-            is_peak = int(factors["peak_override"])
-        else:
-            is_peak = 1 if hour in list(range(7, 10)) + list(range(17, 20)) else 0
+        adj_count = round(vcount * hazard_count_mult)
 
         return {
             "vehicle_count":  adj_count,
             "mean_speed":     round(adj_speed, 3),
-            "occupancy":      occ,
+            "occupancy":      min(vcount * 5.0 / 100.0, 1.0), # Approximate length of vehicle = 5m
             "waiting_time":   round(adj_wait, 1),
-            "hour_of_day":    hour,
-            "is_peak_hour":   is_peak,
+            "hour_of_day":    defaults["hour_of_day"],
+            "is_peak_hour":   defaults["is_peak_hour"],
             "weather_factor": factors["weather_factor"],
         }
     except Exception:
@@ -298,7 +299,7 @@ def dijkstra_route(src_edge_id: str, dst_edge_id: str, conditions: dict = None) 
 
 
 def ml_route(src_edge_id: str, dst_edge_id: str, model_or_ensemble,
-             traci_module=None, conditions: dict = None) -> dict:
+             live_vehicles=None, conditions: dict = None) -> dict:
     """
     Find the quickest path using ensemble ML travel times as edge weights.
     Accepts either an EnsemblePredictor or a bare LightGBM model.
@@ -325,7 +326,7 @@ def ml_route(src_edge_id: str, dst_edge_id: str, model_or_ensemble,
     def ml_edge_weight(edge):
         eid = edge.getID()
         if eid not in _pred_cache:
-            live = _live_edge_features(eid, traci_module, conditions)
+            live = _live_edge_features(eid, live_vehicles, conditions)
             if _is_ensemble:
                 _pred_cache[eid] = model_or_ensemble.predict_edge(edge, live)
             else:
@@ -443,7 +444,7 @@ def _path_coordinates(path):
 # High-level comparison API
 # ---------------------------------------------------------------------------
 
-def _ml_path_cost(edge_ids: list, model_or_ensemble, conditions: dict = None) -> float:
+def _ml_path_cost(edge_ids: list, model_or_ensemble, live_vehicles=None, conditions: dict = None) -> float:
     """
     Compute total ML-estimated travel time for a list of SUMO edge IDs.
     Used to evaluate Dijkstra's path on the same scale as the ML path.
@@ -459,7 +460,7 @@ def _ml_path_cost(edge_ids: list, model_or_ensemble, conditions: dict = None) ->
     for eid in edge_ids:
         try:
             edge = net.getEdge(eid)
-            live = _live_edge_features(eid, None, conditions)
+            live = _live_edge_features(eid, live_vehicles, conditions)
             if _is_ensemble:
                 cost = model_or_ensemble.predict_edge(edge, live)
             else:
@@ -477,7 +478,7 @@ def _ml_path_cost(edge_ids: list, model_or_ensemble, conditions: dict = None) ->
 
 
 def compare_routes(src_edge_id: str, dst_edge_id: str, model_or_ensemble,
-                   traci_module=None, conditions: dict = None) -> dict:
+                   live_vehicles=None, conditions: dict = None) -> dict:
     """
     Run both routing algorithms and return a side-by-side comparison.
 
@@ -494,11 +495,11 @@ def compare_routes(src_edge_id: str, dst_edge_id: str, model_or_ensemble,
     """
     dijkstra = dijkstra_route(src_edge_id, dst_edge_id, conditions)
     ml       = ml_route(src_edge_id, dst_edge_id, model_or_ensemble,
-                        traci_module, conditions)
+                        live_vehicles, conditions)
 
     # Re-score Dijkstra's path using the ML model (fair apples-to-apples)
     dijkstra_ml_cost = _ml_path_cost(
-        dijkstra.get("edges", []), model_or_ensemble, conditions
+        dijkstra.get("edges", []), model_or_ensemble, live_vehicles, conditions
     )
     ml_cost = ml.get("travel_time", 0)  # already ML-estimated
 

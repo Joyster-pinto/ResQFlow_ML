@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="ResQFlow ML — AI-powered emergency vehicle dispatch with real-time SUMO traffic simulation"/>
+    <title>ResQFlow ML — Emergency Dispatch</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/static/css/style.css"/>
+
+    <style>
+    /* ── Dispatch Panel Overrides ─────────────────────────────── */
+    .station-select {
+        width: 100%;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        padding: 10px 12px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color .2s, box-shadow .2s;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 32px;
+    }
+    .station-select:focus {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+    }
+    .station-select option {
+        background: #1e293b;
+        color: var(--text-primary);
+    }
+    .station-select optgroup {
+        color: var(--text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+    }
+
+    /* Condition chips */
+    .conditions-section { margin-top: 4px; }
+    .cond-row {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+    .cond-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--text-muted);
+    }
+    .chip-group {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+    .chip {
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all .18s;
+        user-select: none;
+    }
+    .chip:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+    .chip.active-weather-clear   { background: rgba(16,185,129,.15); border-color: #10b981; color: #10b981; }
+    .chip.active-weather-rain    { background: rgba(59,130,246,.15);  border-color: #3b82f6; color: #3b82f6; }
+    .chip.active-weather-fog     { background: rgba(148,163,184,.15); border-color: #94a3b8; color: #94a3b8; }
+    .chip.active-time-auto       { background: rgba(245,158,11,.12);  border-color: #f59e0b; color: #f59e0b; }
+    .chip.active-time-rush       { background: rgba(239,68,68,.15);   border-color: #ef4444; color: #ef4444; }
+    .chip.active-time-offpeak    { background: rgba(99,102,241,.15);  border-color: #6366f1; color: #6366f1; }
+    .chip.active-incident-medical{ background: rgba(244,63,94,.15);   border-color: #f43f5e; color: #f43f5e; }
+    .chip.active-incident-fire   { background: rgba(251,146,60,.15);  border-color: #fb923c; color: #fb923c; }
+    .chip.active-incident-police { background: rgba(99,102,241,.15);  border-color: #6366f1; color: #6366f1; }
+
+    /* Destination set indicator */
+    .dst-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--text-secondary);
+        min-height: 38px;
+        transition: border-color .2s;
+    }
+    .dst-indicator.has-dst {
+        border-color: #a78bfa;
+        color: var(--text-primary);
+    }
+    .dst-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--border);
+        flex-shrink: 0;
+        transition: background .2s;
+    }
+    .dst-indicator.has-dst .dst-dot { background: #a78bfa; }
+
+    /* Launch button */
+    .btn-launch {
+        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 11px 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: opacity .2s, transform .1s, box-shadow .2s;
+        box-shadow: 0 4px 15px rgba(244,63,94,.35);
+        margin-top: 10px;
+    }
+    .btn-launch:hover { opacity: .92; box-shadow: 0 6px 20px rgba(244,63,94,.45); }
+    .btn-launch:active { transform: scale(.98); }
+    .btn-launch:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* Station map markers */
+    .station-marker-icon {
+        font-size: 22px;
+        line-height: 1;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+        cursor: pointer;
+    }
+
+    /* Conditions badge on mission log */
+    .cond-pills {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        margin-top: 3px;
+    }
+    .cond-pill {
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 10px;
+        background: rgba(255,255,255,.06);
+        color: var(--text-muted);
+    }
+
+    /* Sumo status banner */
+    .sumo-launch-banner {
+        position: absolute;
+        top: 12px; left: 50%; transform: translateX(-50%);
+        background: rgba(15,23,42,.92);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(59,130,246,.4);
+        border-radius: 12px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: #93c5fd;
+        font-weight: 500;
+        z-index: 9999;
+        transition: opacity .4s;
+        pointer-events: none;
+    }
+    .sumo-launch-banner.hidden { opacity: 0; }
+    </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────── -->
+<nav class="navbar" id="main-nav">
+    <div class="nav-brand">
+        <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+        </div>
+        <span class="brand-name">ResQFlow <span class="brand-accent">ML</span></span>
+    </div>
+    <div class="nav-actions">
+        <button class="btn btn-ghost" id="btn-manual-connect" onclick="manualConnect()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Connect SUMO
+        </button>
+    </div>
+</nav>
+
+<!-- ── Main Layout ─────────────────────────────────────────────── -->
+<main class="app-layout">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <!-- Hidden stat holders (still updated by JS) -->
+        <span id="stat-vehicles" style="display:none">0</span>
+        <span id="stat-step" style="display:none">0</span>
+        <span id="stat-missions" style="display:none">0</span>
+        <span id="nav-sim-step" style="display:none">0</span>
+
+        <!-- ── Dispatch Panel ── -->
+        <div class="card" id="card-route">
+            <div class="card-header">
+                <span class="card-title">Dispatch Panel</span>
+                <span class="badge badge-ml">AI</span>
+            </div>
+            <div class="route-form">
+
+                <!-- Origin: station dropdown -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+                        Origin Station
+                    </label>
+                    <select class="station-select" id="sel-station" onchange="onStationChange(this.value)">
+                        <option value="">— Select a station —</option>
+                    </select>
+                </div>
+
+                <!-- Destination: click map -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Destination <span style="color:var(--text-muted);font-weight:400">(click map)</span>
+                    </label>
+                    <div class="dst-indicator" id="dst-indicator">
+                        <span class="dst-dot"></span>
+                        <span id="dst-label">Click the map to set destination</span>
+                    </div>
+                </div>
+
+                <!-- Conditions -->
+                <div class="conditions-section">
+                    <div class="cond-row">
+                        <span class="cond-label">🌤 Weather</span>
+                        <div class="chip-group" id="chips-weather">
+                            <span class="chip active-weather-clear" data-group="weather" data-val="clear" onclick="selectChip(this)">☀️ Clear</span>
+                            <span class="chip" data-group="weather" data-val="rain" onclick="selectChip(this)">🌧 Rain</span>
+                            <span class="chip" data-group="weather" data-val="fog" onclick="selectChip(this)">🌫 Fog</span>
+                        </div>
+                    </div>
+                    <div class="cond-row">
+                        <span class="cond-label">🕐 Time of Day</span>
+                        <div class="chip-group" id="chips-time">
+                            <span class="chip active-time-auto" data-group="time_of_day" data-val="auto" onclick="selectChip(this)">⏱ Auto</span>
+                            <span class="chip" data-group="time_of_day" data-val="rush" onclick="selectChip(this)">🚗 Rush</span>
+                            <span class="chip" data-group="time_of_day" data-val="offpeak" onclick="selectChip(this)">🌙 Off-Peak</span>
+                        </div>
+                    </div>
+                    <div class="cond-row">
+                        <span class="cond-label">🚨 Incident Type</span>
+                        <div class="chip-group" id="chips-incident">
+                            <span class="chip active-incident-medical" data-group="incident_type" data-val="medical" onclick="selectChip(this)">🚑 Medical</span>
+                            <span class="chip" data-group="incident_type" data-val="fire" onclick="selectChip(this)">🔥 Fire</span>
+                            <span class="chip" data-group="incident_type" data-val="police" onclick="selectChip(this)">🚔 Police</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Launch & Compute -->
+                <button class="btn-launch" id="btn-launch" onclick="launchAndCompute()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Launch &amp; Compute Path
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="card" id="card-results" style="display:none">
+            <div class="card-header">
+                <span class="card-title">Route Comparison</span>
+                <span class="improvement-badge" id="improvement-badge"></span>
+            </div>
+            <div class="route-comparison">
+                <div class="route-card dijkstra-card">
+                    <div class="route-card-header">
+                        <div class="algorithm-icon dijkstra-icon">D</div>
+                        <span>Dijkstra (Shortest)</span>
+                    </div>
+                    <div class="route-stats">
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="dijk-time">—</span>
+                            <span class="route-stat-label">Est. Time (s)</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="dijk-dist">—</span>
+                            <span class="route-stat-label">Distance (m)</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="dijk-hops">—</span>
+                            <span class="route-stat-label">Edges</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="route-card ml-card">
+                    <div class="route-card-header">
+                        <div class="algorithm-icon ml-icon">ML</div>
+                        <span>LightGBM (Quickest)</span>
+                    </div>
+                    <div class="route-stats">
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="ml-time">—</span>
+                            <span class="route-stat-label">Est. Time (s)</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="ml-dist">—</span>
+                            <span class="route-stat-label">Distance (m)</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="ml-hops">—</span>
+                            <span class="route-stat-label">Edges</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Log -->
+        <div class="card" id="card-missions">
+            <div class="card-header">
+                <span class="card-title">Mission Log</span>
+                <span class="badge" id="missions-count-badge">0</span>
+            </div>
+            <div class="mission-list" id="mission-list">
+                <div class="empty-state">No missions dispatched yet</div>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- Map Container -->
+    <div class="map-wrapper">
+        <div id="map"></div>
+
+        <!-- SUMO Launch Banner -->
+        <div class="sumo-launch-banner hidden" id="sumo-banner">
+            <div class="spinner"></div>
+            <span id="sumo-banner-msg">Launching SUMO…</span>
+        </div>
+
+        <!-- Map Overlay Controls -->
+        <div class="map-overlay top-right">
+            <div class="map-control-card">
+                <div class="layer-toggles">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="tog-dijkstra" checked onchange="toggleLayer('dijkstra', this.checked)"/>
+                        <span class="toggle-track dijkstra-track"></span>
+                        Dijkstra Route
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="tog-ml" checked onchange="toggleLayer('ml', this.checked)"/>
+                        <span class="toggle-track ml-track"></span>
+                        ML Route
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="tog-vehicles" checked onchange="toggleLayer('vehicles', this.checked)"/>
+                        <span class="toggle-track vehicle-track"></span>
+                        Live Vehicles
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="tog-stations" checked onchange="toggleLayer('stations', this.checked)"/>
+                        <span class="toggle-track station-track"></span>
+                        Stations
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Toast -->
+        <div class="toast" id="training-toast" style="display:none">
+            <div class="spinner"></div>
+            <span id="toast-msg">Training model...</span>
+        </div>
+    </div>
+
+</main>
+
+<!-- ── Model Info Modal ────────────────────────────────────────── -->
+<div class="modal-backdrop" id="modal-backdrop" style="display:none" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2 class="modal-title">Model Details</h2>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body">
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>

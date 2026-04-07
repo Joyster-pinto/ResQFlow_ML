@@ -1,0 +1,20 @@
+{
+  "mae": 0.4904,
+  "r2": 0.9944,
+  "n_samples": 9900,
+  "features": [
+    "vehicle_count",
+    "mean_speed",
+    "occupancy",
+    "waiting_time",
+    "edge_length",
+    "max_speed",
+    "lane_count",
+    "hour_of_day",
+    "is_peak_hour",
+    "speed_ratio",
+    "density",
+    "weather_factor"
+  ],
+  "trained_at": "2026-04-07T11:39:32.054089"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ResQFlow ML - SUMO Additional Definitions
+    Induction loop detectors placed on key edges for traffic data collection
+-->
+<additional>
+    <!-- Edge-based mean data output every 60 seconds -->
+    <edgeData id="edge_data_collector"
+              freq="60"
+              file="../../data/edge_data.xml"
+              excludeEmpty="true"/>
+
+    <!-- Lane area detectors removed: lane IDs must be resolved from actual network -->
+    <!-- Use edgeData above for traffic density collection -->
+
+</additional>

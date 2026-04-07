@@ -29,6 +29,23 @@ sys.path.insert(0, str(Path(__file__).parent))
 from router   import compare_routes, find_nearest_edge, get_net
 from trainer  import load_model, train
 from stations import resolve_stations
+from ensemble import EnsemblePredictor
+
+# Optional ensemble components (graceful degradation)
+try:
+    from catboost_trainer import load_catboost
+except (ImportError, Exception):
+    load_catboost = None
+try:
+    # Pre-load torch before gnn_builder so c10.dll initialises cleanly on Windows
+    import torch as _torch  # noqa: F401
+    from gnn_builder import load_gnn
+except (ImportError, OSError) as _gnn_err:
+    # OSError = Windows DLL init failure (c10.dll); ImportError = torch not installed
+    import logging as _log
+    _log.getLogger(__name__).warning(
+        f"GNN disabled — torch/torch_geometric unavailable: {_gnn_err}")
+    load_gnn = None
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -65,7 +82,8 @@ STATE = {
     "stations":        [],          # cached resolved station list
 }
 
-_model      = None
+_ensemble   = None           # EnsemblePredictor (replaces bare _model)
+_model      = None           # legacy bare LightGBM (kept for backward compat)
 _traci      = None
 _sim_thread = None
 _sumo_proc  = None                  # subprocess handle for sumo-gui
@@ -74,19 +92,59 @@ META_PATH = Path(__file__).parent.parent / "models" / "model_meta.json"
 
 
 def load_model_state():
-    """Load or train the ML model."""
-    global _model, STATE
-    logger.info("Loading ML model...")
+    """Load LightGBM + CatBoost + GNN and build EnsemblePredictor."""
+    global _model, _ensemble, STATE
+    logger.info("Loading ML models…")
+
+    # ── LightGBM (always available) ───────────────────────────────────────────
+    lgbm = None
     try:
-        _model = load_model()
+        lgbm   = load_model()
+        _model = lgbm
         STATE["model_loaded"] = True
         if META_PATH.exists():
             with open(META_PATH) as f:
                 STATE["model_meta"] = json.load(f)
-        logger.info("ML model ready.")
+        logger.info("LightGBM model ready.")
     except Exception as e:
-        logger.error(f"Model load failed: {e}")
-        STATE["model_loaded"] = False
+        logger.error(f"LightGBM load failed: {e}")
+
+    # ── CatBoost (optional) ───────────────────────────────────────────────────
+    catboost = None
+    if load_catboost:
+        try:
+            catboost = load_catboost()
+            logger.info("CatBoost model ready.")
+        except Exception as e:
+            logger.warning(f"CatBoost load failed (non-fatal): {e}")
+
+    # ── GNN (optional, loads/trains in background) ────────────────────────────
+    gnn_model, gnn_edge_ids, gnn_graph = None, [], None
+    if load_gnn:
+        try:
+            net = get_net()   # reuse already-loaded SUMO network
+            gnn_model, gnn_edge_ids, gnn_graph = load_gnn(net)
+            logger.info(f"GNN model ready ({len(gnn_edge_ids)} edges).")
+        except Exception as e:
+            logger.warning(f"GNN load failed (non-fatal): {e}")
+
+    # ── Build ensemble ────────────────────────────────────────────────────────
+    _ensemble = EnsemblePredictor(
+        lgbm_model=lgbm,
+        catboost_model=catboost,
+        gnn_model=gnn_model,
+        gnn_graph_data=gnn_graph,
+        gnn_edge_ids=gnn_edge_ids,
+    )
+    # Pre-warm GNN cache with default conditions
+    if gnn_model:
+        threading.Thread(
+            target=_ensemble.refresh_gnn_cache,
+            kwargs={"conditions": {}},
+            daemon=True,
+        ).start()
+
+    logger.info(f"Ensemble ready: {_ensemble.summary()}")
 
 
 def _preload_stations():
@@ -326,16 +384,16 @@ def api_stations():
 @app.route("/api/launch_sumo", methods=["POST"])
 def api_launch_sumo():
     """
-    Launch sumo-gui with optional condition parameters, then auto-connect TraCI.
-    Body: { "weather": "clear"|"rain"|"fog",
-            "time_of_day": "auto"|"rush"|"offpeak",
-            "incident_type": "medical"|"fire"|"police" }
+    Launch sumo-gui with condition parameters, auto-connect TraCI,
+    and refresh the GNN edge-weight cache for the new conditions.
     """
     data       = request.get_json(force=True, silent=True) or {}
     conditions = {
-        "weather":      data.get("weather",      "clear"),
-        "time_of_day":  data.get("time_of_day",  "auto"),
+        "weather":       data.get("weather",       "clear"),
+        "time_of_day":   data.get("time_of_day",   "auto"),
         "incident_type": data.get("incident_type", "medical"),
+        "day_type":      data.get("day_type",      "weekday"),
+        "road_hazard":   data.get("road_hazard",   "none"),
     }
 
     ok = launch_sumo_process(conditions)
@@ -344,6 +402,14 @@ def api_launch_sumo():
 
     # Store conditions in STATE for ML feature override
     STATE["conditions"] = conditions
+
+    # Refresh GNN cache with new conditions (non-blocking)
+    if _ensemble and _ensemble.gnn is not None:
+        threading.Thread(
+            target=_ensemble.refresh_gnn_cache,
+            kwargs={"conditions": conditions},
+            daemon=True,
+        ).start()
 
     # Auto-connect TraCI after SUMO starts (3-second delay)
     connect_traci(port=8813, delay=3.0)
@@ -386,7 +452,9 @@ def api_route():
         conditions = {**STATE.get("conditions", {}), **data.get("conditions", {})}
 
         logger.info(f"Routing: {src_edge} → {dst_edge} | conditions={conditions}")
-        result = compare_routes(src_edge, dst_edge, _model, _traci, conditions)
+        result = compare_routes(src_edge, dst_edge,
+                                _ensemble if _ensemble else _model,
+                                _traci, conditions)
 
         # Store as active mission
         mission = {

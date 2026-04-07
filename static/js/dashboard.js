@@ -452,9 +452,11 @@ function renderResults(data) {
     const d = data.dijkstra || {};
     const m = data.ml       || {};
 
-    document.getElementById('dijk-time').textContent = d.travel_time ?? '—';
-    document.getElementById('dijk-dist').textContent = d.distance    ?? '—';
-    document.getElementById('dijk-hops').textContent = d.hops        ?? '—';
+    // Both travel_times are now ML-estimated (fair comparison)
+    document.getElementById('dijk-time').textContent     = d.travel_time          ?? '—';
+    document.getElementById('dijk-freeflow').textContent = d.travel_time_freeflow  ?? '—';
+    document.getElementById('dijk-dist').textContent     = d.distance              ?? '—';
+    document.getElementById('dijk-hops').textContent     = d.hops                  ?? '—';
 
     document.getElementById('ml-time').textContent  = m.travel_time ?? '—';
     document.getElementById('ml-dist').textContent  = m.distance    ?? '—';
@@ -462,11 +464,15 @@ function renderResults(data) {
 
     const imp   = data.improvement_pct || 0;
     const badge = document.getElementById('improvement-badge');
-    if (imp > 0) {
-        badge.textContent = `ML saves ${imp}%`;
+    if (imp > 1) {
+        badge.textContent = `ML saves ${imp.toFixed(1)}%`;
         badge.className   = 'improvement-badge positive';
+    } else if (imp >= 0) {
+        badge.textContent = `Paths equivalent (~${imp.toFixed(1)}%)`;
+        badge.className   = 'improvement-badge neutral';
     } else {
-        badge.textContent = `Dijkstra wins by ${Math.abs(imp)}%`;
+        // Should rarely happen — means Dijkstra found a lower ML-cost path
+        badge.textContent = `Dijkstra better by ${Math.abs(imp).toFixed(1)}%`;
         badge.className   = 'improvement-badge negative';
     }
 
@@ -475,6 +481,7 @@ function renderResults(data) {
     document.querySelector('.ml-card').style.boxShadow =
         data.winner === 'ml' ? '0 0 0 2px #a78bfa' : '';
 }
+
 
 // ── Mission Log ────────────────────────────────────────────────────────────
 function addMissionToLog(mission) {

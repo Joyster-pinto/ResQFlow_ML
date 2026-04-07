@@ -331,12 +331,16 @@
                 <div class="route-card dijkstra-card">
                     <div class="route-card-header">
                         <div class="algorithm-icon dijkstra-icon">D</div>
-                        <span>Dijkstra (Shortest)</span>
+                        <span>Dijkstra (Shortest Distance)</span>
                     </div>
                     <div class="route-stats">
                         <div class="route-stat">
                             <span class="route-stat-val" id="dijk-time">—</span>
-                            <span class="route-stat-label">Est. Time (s)</span>
+                            <span class="route-stat-label">ML Est. Time (s)</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="route-stat-val" id="dijk-freeflow">—</span>
+                            <span class="route-stat-label">Free-flow Time (s)</span>
                         </div>
                         <div class="route-stat">
                             <span class="route-stat-val" id="dijk-dist">—</span>
@@ -352,12 +356,12 @@
                 <div class="route-card ml-card">
                     <div class="route-card-header">
                         <div class="algorithm-icon ml-icon">ML</div>
-                        <span>LightGBM (Quickest)</span>
+                        <span>Ensemble ML (Quickest)</span>
                     </div>
                     <div class="route-stats">
                         <div class="route-stat">
                             <span class="route-stat-val" id="ml-time">—</span>
-                            <span class="route-stat-label">Est. Time (s)</span>
+                            <span class="route-stat-label">ML Est. Time (s)</span>
                         </div>
                         <div class="route-stat">
                             <span class="route-stat-val" id="ml-dist">—</span>

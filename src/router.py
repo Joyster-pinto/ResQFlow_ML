@@ -59,25 +59,78 @@ _WEATHER_SPEED_FACTOR = {
 _TIME_PEAK_OVERRIDE = {
     "rush":    1,
     "offpeak": 0,
-    "auto":    None,  # use simulation time
+    "auto":    None,  # derive from real clock
+}
+
+# Realistic offline traffic volume defaults per time-of-day
+# These are applied when SUMO/TraCI is not connected
+_TIME_DEFAULT_TRAFFIC = {
+    "rush":    {"vehicle_count": 18, "occupancy": 0.55, "waiting_time": 35.0},
+    "offpeak": {"vehicle_count":  2, "occupancy": 0.05, "waiting_time":  1.5},
+    "auto":    {"vehicle_count":  6, "occupancy": 0.18, "waiting_time":  8.0},
+}
+
+# Road hazard modifiers  (multiplied / added onto base features)
+_HAZARD_MODIFIERS = {
+    # hazard:  (speed_mult, waiting_time_add, vehicle_count_mult)
+    "none":         (1.00, 0,    1.0),
+    "accident":     (0.50, 90,   2.5),   # half speed, big queue
+    "construction": (0.55, 40,   1.8),   # lane restrictions
+    "flood":        (0.35, 20,   1.2),   # extreme speed drop
+}
+
+# Day-type modifiers on base vehicle count
+_DAY_TYPE_TRAFFIC_SCALE = {
+    "weekday": 1.0,
+    "weekend": 0.45,  # ~55% less traffic on weekends
 }
 
 
 def _condition_factors(conditions: dict) -> dict:
-    """Derive scalar adjustment factors from condition dict."""
-    weather      = (conditions or {}).get("weather", "clear")
-    time_of_day  = (conditions or {}).get("time_of_day", "auto")
+    """Derive scalar adjustment factors from condition dict.
+    Handles: weather, time_of_day, day_type, road_hazard.
+    """
+    cond = conditions or {}
+    weather      = cond.get("weather",      "clear")
+    time_of_day  = cond.get("time_of_day",  "auto")
+    day_type     = cond.get("day_type",     "weekday")
+    road_hazard  = cond.get("road_hazard",  "none")
 
-    speed_factor = _WEATHER_SPEED_FACTOR.get(weather, 1.0)
-    peak_override = _TIME_PEAK_OVERRIDE.get(time_of_day, None)
+    # ── Weather ──────────────────────────────────────────────────
+    weather_speed  = _WEATHER_SPEED_FACTOR.get(weather, 1.0)
+    weather_scalar = {"clear": 0.0, "rain": 0.5, "fog": 1.0}.get(weather, 0.0)
 
-    # Weather factor: 0.0=clear, 0.5=rain, 1.0=heavy fog
-    weather_factor_scalar = {"clear": 0.0, "rain": 0.5, "fog": 1.0}.get(weather, 0.0)
+    # ── Time of day ───────────────────────────────────────────────
+    peak_override   = _TIME_PEAK_OVERRIDE.get(time_of_day, None)
+    traffic_defaults = dict(_TIME_DEFAULT_TRAFFIC.get(time_of_day, _TIME_DEFAULT_TRAFFIC["auto"]))
+
+    # Weekend scales down traffic volume regardless of rush/offpeak
+    day_scale = _DAY_TYPE_TRAFFIC_SCALE.get(day_type, 1.0)
+    # Weekends have no real rush hour
+    if day_type == "weekend" and peak_override == 1:
+        peak_override = 0
+    traffic_defaults["vehicle_count"] = round(traffic_defaults["vehicle_count"] * day_scale)
+    traffic_defaults["occupancy"]     = round(traffic_defaults["occupancy"]     * day_scale, 3)
+    traffic_defaults["waiting_time"]  = round(traffic_defaults["waiting_time"]  * day_scale, 1)
+
+    # ── Road hazard ───────────────────────────────────────────────
+    hazard_speed_mult, hazard_wait_add, hazard_count_mult = \
+        _HAZARD_MODIFIERS.get(road_hazard, _HAZARD_MODIFIERS["none"])
+
+    # Combined speed factor: weather × hazard
+    combined_speed_factor = weather_speed * hazard_speed_mult
+
+    # Apply hazard to traffic defaults
+    traffic_defaults["vehicle_count"] = round(traffic_defaults["vehicle_count"] * hazard_count_mult)
+    traffic_defaults["waiting_time"]  = round(traffic_defaults["waiting_time"] + hazard_wait_add, 1)
 
     return {
-        "speed_factor":        speed_factor,
+        "speed_factor":        combined_speed_factor,
+        "weather_speed":       weather_speed,
+        "hazard_speed_mult":   hazard_speed_mult,
         "peak_override":       peak_override,
-        "weather_factor":      weather_factor_scalar,
+        "weather_factor":      weather_scalar,
+        "traffic_defaults":    traffic_defaults,   # realistic offline defaults
     }
 
 
@@ -86,25 +139,43 @@ def _condition_factors(conditions: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 def _live_edge_features(edge_id: str, traci_module=None, conditions: dict = None) -> dict:
-    """Get live TraCI edge features, or return defaults if unavailable.
-    Applies condition-based overrides on top of live data.
+    """Get live TraCI edge features, or return realistic condition-aware defaults.
+    When SUMO/TraCI is not connected, defaults vary meaningfully with conditions
+    so that Rush vs Off-Peak, day type, and hazard actually influence routing.
     """
+    import datetime
     factors = _condition_factors(conditions)
+    td      = factors["traffic_defaults"]
+
+    # Derive hour from real wall clock (used when SUMO not connected)
+    now  = datetime.datetime.now()
+    hour = now.hour
+
+    # Peak hour: use condition override, or derive from actual clock
+    if factors["peak_override"] is not None:
+        is_peak = int(factors["peak_override"])
+    else:
+        is_peak = 1 if hour in list(range(7, 10)) + list(range(17, 20)) else 0
+
+    # Realistic base speed: speed limit × combined factor (varies per edge at call time)
+    # We approximate base as 13.89 m/s (50 km/h) scaled by conditions
     base_speed = 13.89 * factors["speed_factor"]
 
+    # ── Offline defaults — now actually vary with conditions ──────
     defaults = {
-        "vehicle_count": 0,
-        "mean_speed":    base_speed,
-        "occupancy":     0.0,
-        "waiting_time":  0.0,
-        "hour_of_day":   8,
-        "is_peak_hour":  1 if factors["peak_override"] is None else factors["peak_override"],
+        "vehicle_count": td["vehicle_count"],
+        "mean_speed":    round(base_speed, 3),
+        "occupancy":     td["occupancy"],
+        "waiting_time":  td["waiting_time"],
+        "hour_of_day":   hour,
+        "is_peak_hour":  is_peak,
         "weather_factor": factors["weather_factor"],
     }
 
     if traci_module is None:
         return defaults
 
+    # ── Live TraCI data — apply condition overrides on top ────────
     try:
         import traci as tc
         vcount = tc.edge.getLastStepVehicleNumber(edge_id)
@@ -114,20 +185,26 @@ def _live_edge_features(edge_id: str, traci_module=None, conditions: dict = None
         t      = tc.simulation.getTime()
         hour   = int((t % 86400) / 3600)
 
-        # Apply weather speed factor to live speed
+        # Apply all condition speed factors to live speed
         adj_speed = max(speed, 0.5) * factors["speed_factor"]
 
-        # Peak hour: use override if set, otherwise derive from sim time
+        # Apply hazard waiting-time penalty on top of live data
+        _, hazard_wait_add, hazard_count_mult = \
+            _HAZARD_MODIFIERS.get((conditions or {}).get("road_hazard", "none"),
+                                   _HAZARD_MODIFIERS["none"])
+        adj_wait  = wait  + hazard_wait_add
+        adj_count = round(vcount * hazard_count_mult)
+
         if factors["peak_override"] is not None:
-            is_peak = factors["peak_override"]
+            is_peak = int(factors["peak_override"])
         else:
             is_peak = 1 if hour in list(range(7, 10)) + list(range(17, 20)) else 0
 
         return {
-            "vehicle_count":  vcount,
-            "mean_speed":     adj_speed,
+            "vehicle_count":  adj_count,
+            "mean_speed":     round(adj_speed, 3),
             "occupancy":      occ,
-            "waiting_time":   wait,
+            "waiting_time":   round(adj_wait, 1),
             "hour_of_day":    hour,
             "is_peak_hour":   is_peak,
             "weather_factor": factors["weather_factor"],

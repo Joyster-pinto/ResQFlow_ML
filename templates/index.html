@@ -98,6 +98,14 @@
     .chip.active-incident-medical{ background: rgba(244,63,94,.15);   border-color: #f43f5e; color: #f43f5e; }
     .chip.active-incident-fire   { background: rgba(251,146,60,.15);  border-color: #fb923c; color: #fb923c; }
     .chip.active-incident-police { background: rgba(99,102,241,.15);  border-color: #6366f1; color: #6366f1; }
+    /* Day Type chips */
+    .chip.active-day-type-weekday { background: rgba(99,140,255,.15); border-color: #638cff; color: #638cff; }
+    .chip.active-day-type-weekend { background: rgba(167,139,250,.15);border-color: #a78bfa; color: #a78bfa; }
+    /* Road Hazard chips */
+    .chip.active-road-hazard-none         { background: rgba(16,185,129,.12); border-color: #10b981; color: #10b981; }
+    .chip.active-road-hazard-accident     { background: rgba(239,68,68,.18);  border-color: #ef4444; color: #ef4444; }
+    .chip.active-road-hazard-construction { background: rgba(251,146,60,.15); border-color: #fb923c; color: #fb923c; }
+    .chip.active-road-hazard-flood        { background: rgba(59,130,246,.18); border-color: #3b82f6; color: #3b82f6; }
 
     /* Destination set indicator */
     .dst-indicator {
@@ -276,6 +284,22 @@
                             <span class="chip active-time-auto" data-group="time_of_day" data-val="auto" onclick="selectChip(this)">⏱ Auto</span>
                             <span class="chip" data-group="time_of_day" data-val="rush" onclick="selectChip(this)">🚗 Rush</span>
                             <span class="chip" data-group="time_of_day" data-val="offpeak" onclick="selectChip(this)">🌙 Off-Peak</span>
+                        </div>
+                    </div>
+                    <div class="cond-row">
+                        <span class="cond-label">📅 Day Type</span>
+                        <div class="chip-group" id="chips-day-type">
+                            <span class="chip active-day-type-weekday" data-group="day_type" data-val="weekday" onclick="selectChip(this)">💼 Weekday</span>
+                            <span class="chip" data-group="day_type" data-val="weekend" onclick="selectChip(this)">🏖 Weekend</span>
+                        </div>
+                    </div>
+                    <div class="cond-row">
+                        <span class="cond-label">⚠️ Road Hazard</span>
+                        <div class="chip-group" id="chips-road-hazard">
+                            <span class="chip active-road-hazard-none" data-group="road_hazard" data-val="none" onclick="selectChip(this)">✅ None</span>
+                            <span class="chip" data-group="road_hazard" data-val="accident" onclick="selectChip(this)">🚨 Accident</span>
+                            <span class="chip" data-group="road_hazard" data-val="construction" onclick="selectChip(this)">🚧 Construction</span>
+                            <span class="chip" data-group="road_hazard" data-val="flood" onclick="selectChip(this)">🌊 Flood</span>
                         </div>
                     </div>
                     <div class="cond-row">

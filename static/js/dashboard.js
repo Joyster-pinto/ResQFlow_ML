@@ -31,6 +31,8 @@ const conditions = {
     weather:       "clear",
     time_of_day:   "auto",
     incident_type: "medical",
+    day_type:      "weekday",
+    road_hazard:   "none",
 };
 
 // ── Init ───────────────────────────────────────────────────────────────────

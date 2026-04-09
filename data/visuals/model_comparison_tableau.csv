@@ -1,0 +1,3 @@
+Model,MAE,R2,Samples,Number of Features
+CatBoost,0.334,0.9955,9900,13
+LightGBM,0.4904,0.9944,9900,12

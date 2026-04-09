@@ -1,0 +1,747 @@
+Route_Type,Point_Order,Latitude,Longitude,Estimated_Time_sec
+Standard Shortest Path (Dijkstra),1,12.312262,76.649017,584.5
+Standard Shortest Path (Dijkstra),2,12.312142,76.649759,584.5
+Standard Shortest Path (Dijkstra),3,12.31212,76.649892,584.5
+Standard Shortest Path (Dijkstra),4,12.312069,76.650203,584.5
+Standard Shortest Path (Dijkstra),5,12.312038,76.65051,584.5
+Standard Shortest Path (Dijkstra),6,12.312033,76.650639,584.5
+Standard Shortest Path (Dijkstra),7,12.312063,76.651247,584.5
+Standard Shortest Path (Dijkstra),8,12.312083,76.651374,584.5
+Standard Shortest Path (Dijkstra),9,12.312217,76.651877,584.5
+Standard Shortest Path (Dijkstra),10,12.312295,76.65197,584.5
+Standard Shortest Path (Dijkstra),11,12.312338,76.651957,584.5
+Standard Shortest Path (Dijkstra),12,12.312806,76.651815,584.5
+Standard Shortest Path (Dijkstra),13,12.312887,76.65179,584.5
+Standard Shortest Path (Dijkstra),14,12.314242,76.651377,584.5
+Standard Shortest Path (Dijkstra),15,12.314308,76.651316,584.5
+Standard Shortest Path (Dijkstra),16,12.314309,76.651307,584.5
+Standard Shortest Path (Dijkstra),17,12.314329,76.651261,584.5
+Standard Shortest Path (Dijkstra),18,12.314362,76.651224,584.5
+Standard Shortest Path (Dijkstra),19,12.314381,76.651214,584.5
+Standard Shortest Path (Dijkstra),20,12.314451,76.651192,584.5
+Standard Shortest Path (Dijkstra),21,12.314453,76.651192,584.5
+Standard Shortest Path (Dijkstra),22,12.31452,76.651207,584.5
+Standard Shortest Path (Dijkstra),23,12.314525,76.651209,584.5
+Standard Shortest Path (Dijkstra),24,12.31456,76.651234,584.5
+Standard Shortest Path (Dijkstra),25,12.314586,76.651269,584.5
+Standard Shortest Path (Dijkstra),26,12.31459,76.65128,584.5
+Standard Shortest Path (Dijkstra),27,12.31468,76.65134,584.5
+Standard Shortest Path (Dijkstra),28,12.315569,76.650997,584.5
+Standard Shortest Path (Dijkstra),29,12.315923,76.650894,584.5
+Standard Shortest Path (Dijkstra),30,12.316049,76.65086,584.5
+Standard Shortest Path (Dijkstra),31,12.316177,76.650826,584.5
+Standard Shortest Path (Dijkstra),32,12.316233,76.650811,584.5
+Standard Shortest Path (Dijkstra),33,12.316303,76.650807,584.5
+Standard Shortest Path (Dijkstra),34,12.316433,76.6508,584.5
+Standard Shortest Path (Dijkstra),35,12.31669,76.650785,584.5
+Standard Shortest Path (Dijkstra),36,12.31682,76.650775,584.5
+Standard Shortest Path (Dijkstra),37,12.316934,76.650766,584.5
+Standard Shortest Path (Dijkstra),38,12.317079,76.650759,584.5
+Standard Shortest Path (Dijkstra),39,12.317257,76.650759,584.5
+Standard Shortest Path (Dijkstra),40,12.317448,76.650752,584.5
+Standard Shortest Path (Dijkstra),41,12.31762,76.65076,584.5
+Standard Shortest Path (Dijkstra),42,12.31775,76.650763,584.5
+Standard Shortest Path (Dijkstra),43,12.317965,76.650765,584.5
+Standard Shortest Path (Dijkstra),44,12.318098,76.65077,584.5
+Standard Shortest Path (Dijkstra),45,12.318248,76.650779,584.5
+Standard Shortest Path (Dijkstra),46,12.318356,76.650786,584.5
+Standard Shortest Path (Dijkstra),47,12.318358,76.650786,584.5
+Standard Shortest Path (Dijkstra),48,12.31845,76.650705,584.5
+Standard Shortest Path (Dijkstra),49,12.318493,76.65046,584.5
+Standard Shortest Path (Dijkstra),50,12.318512,76.65032,584.5
+Standard Shortest Path (Dijkstra),51,12.318513,76.650303,584.5
+Standard Shortest Path (Dijkstra),52,12.318529,76.650171,584.5
+Standard Shortest Path (Dijkstra),53,12.318538,76.650108,584.5
+Standard Shortest Path (Dijkstra),54,12.318559,76.649854,584.5
+Standard Shortest Path (Dijkstra),55,12.318561,76.649819,584.5
+Standard Shortest Path (Dijkstra),56,12.318574,76.649685,584.5
+Standard Shortest Path (Dijkstra),57,12.318574,76.649684,584.5
+Standard Shortest Path (Dijkstra),58,12.318598,76.649552,584.5
+Standard Shortest Path (Dijkstra),59,12.318612,76.649485,584.5
+Standard Shortest Path (Dijkstra),60,12.318629,76.649356,584.5
+Standard Shortest Path (Dijkstra),61,12.318634,76.649244,584.5
+Standard Shortest Path (Dijkstra),62,12.318625,76.649123,584.5
+Standard Shortest Path (Dijkstra),63,12.3186,76.649008,584.5
+Standard Shortest Path (Dijkstra),64,12.318624,76.64892,584.5
+Standard Shortest Path (Dijkstra),65,12.318895,76.648715,584.5
+Standard Shortest Path (Dijkstra),66,12.318964,76.648663,584.5
+Standard Shortest Path (Dijkstra),67,12.318973,76.648656,584.5
+Standard Shortest Path (Dijkstra),68,12.319041,76.648604,584.5
+Standard Shortest Path (Dijkstra),69,12.319191,76.648491,584.5
+Standard Shortest Path (Dijkstra),70,12.319249,76.648437,584.5
+Standard Shortest Path (Dijkstra),71,12.319361,76.648335,584.5
+Standard Shortest Path (Dijkstra),72,12.319879,76.647889,584.5
+Standard Shortest Path (Dijkstra),73,12.320149,76.647685,584.5
+Standard Shortest Path (Dijkstra),74,12.320665,76.647276,584.5
+Standard Shortest Path (Dijkstra),75,12.32078,76.647185,584.5
+Standard Shortest Path (Dijkstra),76,12.320857,76.647124,584.5
+Standard Shortest Path (Dijkstra),77,12.321011,76.647164,584.5
+Standard Shortest Path (Dijkstra),78,12.321131,76.647157,584.5
+Standard Shortest Path (Dijkstra),79,12.321261,76.647149,584.5
+Standard Shortest Path (Dijkstra),80,12.32131,76.647146,584.5
+Standard Shortest Path (Dijkstra),81,12.321441,76.64714,584.5
+Standard Shortest Path (Dijkstra),82,12.321507,76.647139,584.5
+Standard Shortest Path (Dijkstra),83,12.321636,76.647135,584.5
+Standard Shortest Path (Dijkstra),84,12.321704,76.647133,584.5
+Standard Shortest Path (Dijkstra),85,12.321834,76.647127,584.5
+Standard Shortest Path (Dijkstra),86,12.321883,76.647125,584.5
+Standard Shortest Path (Dijkstra),87,12.322013,76.647121,584.5
+Standard Shortest Path (Dijkstra),88,12.322069,76.64712,584.5
+Standard Shortest Path (Dijkstra),89,12.322199,76.647117,584.5
+Standard Shortest Path (Dijkstra),90,12.322279,76.647115,584.5
+Standard Shortest Path (Dijkstra),91,12.322409,76.647111,584.5
+Standard Shortest Path (Dijkstra),92,12.322474,76.647109,584.5
+Standard Shortest Path (Dijkstra),93,12.322604,76.647106,584.5
+Standard Shortest Path (Dijkstra),94,12.32264,76.647105,584.5
+Standard Shortest Path (Dijkstra),95,12.322777,76.647102,584.5
+Standard Shortest Path (Dijkstra),96,12.322869,76.647098,584.5
+Standard Shortest Path (Dijkstra),97,12.322999,76.647093,584.5
+Standard Shortest Path (Dijkstra),98,12.323053,76.647091,584.5
+Standard Shortest Path (Dijkstra),99,12.323184,76.647086,584.5
+Standard Shortest Path (Dijkstra),100,12.323234,76.647084,584.5
+Standard Shortest Path (Dijkstra),101,12.323365,76.647079,584.5
+Standard Shortest Path (Dijkstra),102,12.323413,76.647077,584.5
+Standard Shortest Path (Dijkstra),103,12.323543,76.647072,584.5
+Standard Shortest Path (Dijkstra),104,12.323605,76.647069,584.5
+Standard Shortest Path (Dijkstra),105,12.323735,76.647064,584.5
+Standard Shortest Path (Dijkstra),106,12.323792,76.647062,584.5
+Standard Shortest Path (Dijkstra),107,12.323922,76.647057,584.5
+Standard Shortest Path (Dijkstra),108,12.323976,76.647055,584.5
+Standard Shortest Path (Dijkstra),109,12.324106,76.647049,584.5
+Standard Shortest Path (Dijkstra),110,12.324165,76.647047,584.5
+Standard Shortest Path (Dijkstra),111,12.324296,76.647046,584.5
+Standard Shortest Path (Dijkstra),112,12.324353,76.647048,584.5
+Standard Shortest Path (Dijkstra),113,12.324483,76.647051,584.5
+Standard Shortest Path (Dijkstra),114,12.324584,76.647053,584.5
+Standard Shortest Path (Dijkstra),115,12.324713,76.647051,584.5
+Standard Shortest Path (Dijkstra),116,12.32482,76.647046,584.5
+Standard Shortest Path (Dijkstra),117,12.324951,76.647044,584.5
+Standard Shortest Path (Dijkstra),118,12.324959,76.647045,584.5
+Standard Shortest Path (Dijkstra),119,12.325097,76.647048,584.5
+Standard Shortest Path (Dijkstra),120,12.325148,76.64705,584.5
+Standard Shortest Path (Dijkstra),121,12.32525,76.647041,584.5
+Standard Shortest Path (Dijkstra),122,12.325832,76.646875,584.5
+Standard Shortest Path (Dijkstra),123,12.326389,76.646707,584.5
+Standard Shortest Path (Dijkstra),124,12.326508,76.64668,584.5
+Standard Shortest Path (Dijkstra),125,12.327123,76.646578,584.5
+Standard Shortest Path (Dijkstra),126,12.327768,76.646515,584.5
+Standard Shortest Path (Dijkstra),127,12.327892,76.646514,584.5
+Standard Shortest Path (Dijkstra),128,12.328242,76.646538,584.5
+Standard Shortest Path (Dijkstra),129,12.328604,76.646607,584.5
+Standard Shortest Path (Dijkstra),130,12.32877,76.646643,584.5
+Standard Shortest Path (Dijkstra),131,12.328898,76.646689,584.5
+Standard Shortest Path (Dijkstra),132,12.329189,76.646828,584.5
+Standard Shortest Path (Dijkstra),133,12.329509,76.646991,584.5
+Standard Shortest Path (Dijkstra),134,12.32966,76.647,584.5
+Standard Shortest Path (Dijkstra),135,12.329666,76.646999,584.5
+Standard Shortest Path (Dijkstra),136,12.32976,76.646966,584.5
+Standard Shortest Path (Dijkstra),137,12.329869,76.646795,584.5
+Standard Shortest Path (Dijkstra),138,12.329939,76.646684,584.5
+Standard Shortest Path (Dijkstra),139,12.330164,76.646331,584.5
+Standard Shortest Path (Dijkstra),140,12.330234,76.64622,584.5
+Standard Shortest Path (Dijkstra),141,12.330504,76.645795,584.5
+Standard Shortest Path (Dijkstra),142,12.33055,76.645722,584.5
+Standard Shortest Path (Dijkstra),143,12.330553,76.645718,584.5
+Standard Shortest Path (Dijkstra),144,12.330543,76.645606,584.5
+Standard Shortest Path (Dijkstra),145,12.330539,76.64559,584.5
+Standard Shortest Path (Dijkstra),146,12.330588,76.645483,584.5
+Standard Shortest Path (Dijkstra),147,12.330589,76.645482,584.5
+Standard Shortest Path (Dijkstra),148,12.330614,76.645399,584.5
+Standard Shortest Path (Dijkstra),149,12.330624,76.645227,584.5
+Standard Shortest Path (Dijkstra),150,12.330714,76.644764,584.5
+Standard Shortest Path (Dijkstra),151,12.330731,76.64468,584.5
+Standard Shortest Path (Dijkstra),152,12.33082,76.644254,584.5
+Standard Shortest Path (Dijkstra),153,12.330862,76.644068,584.5
+Standard Shortest Path (Dijkstra),154,12.330893,76.64392,584.5
+Standard Shortest Path (Dijkstra),155,12.330918,76.643834,584.5
+Standard Shortest Path (Dijkstra),156,12.330946,76.643775,584.5
+Standard Shortest Path (Dijkstra),157,12.330993,76.643682,584.5
+Standard Shortest Path (Dijkstra),158,12.331008,76.643658,584.5
+Standard Shortest Path (Dijkstra),159,12.331185,76.643345,584.5
+Standard Shortest Path (Dijkstra),160,12.331219,76.643266,584.5
+Standard Shortest Path (Dijkstra),161,12.331287,76.643066,584.5
+Standard Shortest Path (Dijkstra),162,12.331358,76.642773,584.5
+Standard Shortest Path (Dijkstra),163,12.331372,76.642605,584.5
+Standard Shortest Path (Dijkstra),164,12.331348,76.64221,584.5
+Standard Shortest Path (Dijkstra),165,12.331351,76.642208,584.5
+Standard Shortest Path (Dijkstra),166,12.331463,76.642142,584.5
+Standard Shortest Path (Dijkstra),167,12.331508,76.642132,584.5
+Standard Shortest Path (Dijkstra),168,12.331832,76.642057,584.5
+Standard Shortest Path (Dijkstra),169,12.331997,76.641992,584.5
+Standard Shortest Path (Dijkstra),170,12.33208,76.641928,584.5
+Standard Shortest Path (Dijkstra),171,12.332081,76.641927,584.5
+Standard Shortest Path (Dijkstra),172,12.332152,76.641832,584.5
+Standard Shortest Path (Dijkstra),173,12.332195,76.641767,584.5
+Standard Shortest Path (Dijkstra),174,12.332421,76.641367,584.5
+Standard Shortest Path (Dijkstra),175,12.332486,76.641252,584.5
+Standard Shortest Path (Dijkstra),176,12.332594,76.641063,584.5
+Standard Shortest Path (Dijkstra),177,12.332659,76.640949,584.5
+Standard Shortest Path (Dijkstra),178,12.332808,76.640686,584.5
+Standard Shortest Path (Dijkstra),179,12.332873,76.640572,584.5
+Standard Shortest Path (Dijkstra),180,12.333018,76.640318,584.5
+Standard Shortest Path (Dijkstra),181,12.333179,76.640032,584.5
+Standard Shortest Path (Dijkstra),182,12.333244,76.639917,584.5
+Standard Shortest Path (Dijkstra),183,12.333394,76.63965,584.5
+Standard Shortest Path (Dijkstra),184,12.333457,76.639534,584.5
+Standard Shortest Path (Dijkstra),185,12.333571,76.639324,584.5
+Standard Shortest Path (Dijkstra),186,12.333915,76.63872,584.5
+Standard Shortest Path (Dijkstra),187,12.333995,76.638665,584.5
+Standard Shortest Path (Dijkstra),188,12.335319,76.638856,584.5
+Standard Shortest Path (Dijkstra),189,12.335434,76.638785,584.5
+Standard Shortest Path (Dijkstra),190,12.335703,76.638366,584.5
+Standard Shortest Path (Dijkstra),191,12.335804,76.638221,584.5
+Standard Shortest Path (Dijkstra),192,12.335952,76.638024,584.5
+Standard Shortest Path (Dijkstra),193,12.336079,76.637827,584.5
+Standard Shortest Path (Dijkstra),194,12.336122,76.63776,584.5
+Standard Shortest Path (Dijkstra),195,12.336238,76.637569,584.5
+Standard Shortest Path (Dijkstra),196,12.336405,76.637285,584.5
+Standard Shortest Path (Dijkstra),197,12.336634,76.636946,584.5
+Standard Shortest Path (Dijkstra),198,12.336885,76.636637,584.5
+Standard Shortest Path (Dijkstra),199,12.337122,76.636372,584.5
+Standard Shortest Path (Dijkstra),200,12.337374,76.636122,584.5
+Standard Shortest Path (Dijkstra),201,12.337784,76.635765,584.5
+Standard Shortest Path (Dijkstra),202,12.337908,76.635666,584.5
+Standard Shortest Path (Dijkstra),203,12.33822,76.635464,584.5
+Standard Shortest Path (Dijkstra),204,12.33837,76.635375,584.5
+Standard Shortest Path (Dijkstra),205,12.338372,76.635373,584.5
+Standard Shortest Path (Dijkstra),206,12.3384,76.635356,584.5
+Standard Shortest Path (Dijkstra),207,12.338513,76.635287,584.5
+Standard Shortest Path (Dijkstra),208,12.338677,76.635182,584.5
+Standard Shortest Path (Dijkstra),209,12.338754,76.635144,584.5
+Standard Shortest Path (Dijkstra),210,12.338861,76.635095,584.5
+Standard Shortest Path (Dijkstra),211,12.338866,76.635092,584.5
+Standard Shortest Path (Dijkstra),212,12.338995,76.635051,584.5
+Standard Shortest Path (Dijkstra),213,12.339167,76.635037,584.5
+Standard Shortest Path (Dijkstra),214,12.339321,76.635061,584.5
+Standard Shortest Path (Dijkstra),215,12.339455,76.635081,584.5
+Standard Shortest Path (Dijkstra),216,12.339569,76.635099,584.5
+Standard Shortest Path (Dijkstra),217,12.339728,76.635123,584.5
+Standard Shortest Path (Dijkstra),218,12.340084,76.635175,584.5
+Standard Shortest Path (Dijkstra),219,12.340237,76.635174,584.5
+Standard Shortest Path (Dijkstra),220,12.340288,76.635164,584.5
+Standard Shortest Path (Dijkstra),221,12.341086,76.634828,584.5
+Standard Shortest Path (Dijkstra),222,12.341595,76.634677,584.5
+Standard Shortest Path (Dijkstra),223,12.341721,76.63464,584.5
+Standard Shortest Path (Dijkstra),224,12.342029,76.63455,584.5
+Standard Shortest Path (Dijkstra),225,12.342073,76.634497,584.5
+Standard Shortest Path (Dijkstra),226,12.342127,76.634282,584.5
+Standard Shortest Path (Dijkstra),227,12.342073,76.633954,584.5
+Standard Shortest Path (Dijkstra),228,12.342052,76.633824,584.5
+Standard Shortest Path (Dijkstra),229,12.342019,76.633607,584.5
+Standard Shortest Path (Dijkstra),230,12.342062,76.633551,584.5
+Standard Shortest Path (Dijkstra),231,12.342367,76.633523,584.5
+Standard Shortest Path (Dijkstra),232,12.342483,76.633493,584.5
+Standard Shortest Path (Dijkstra),233,12.342775,76.633361,584.5
+Standard Shortest Path (Dijkstra),234,12.342889,76.633298,584.5
+Standard Shortest Path (Dijkstra),235,12.342991,76.633227,584.5
+Standard Shortest Path (Dijkstra),236,12.343055,76.633179,584.5
+Standard Shortest Path (Dijkstra),237,12.343324,76.632978,584.5
+Standard Shortest Path (Dijkstra),238,12.343429,76.632893,584.5
+Standard Shortest Path (Dijkstra),239,12.343576,76.632783,584.5
+Standard Shortest Path (Dijkstra),240,12.34374,76.632619,584.5
+Standard Shortest Path (Dijkstra),241,12.343892,76.632412,584.5
+Standard Shortest Path (Dijkstra),242,12.343972,76.632362,584.5
+Standard Shortest Path (Dijkstra),243,12.343974,76.63236,584.5
+Standard Shortest Path (Dijkstra),244,12.344138,76.63232,584.5
+Standard Shortest Path (Dijkstra),245,12.344501,76.632252,584.5
+Standard Shortest Path (Dijkstra),246,12.34464,76.632227,584.5
+Standard Shortest Path (Dijkstra),247,12.344984,76.632171,584.5
+Standard Shortest Path (Dijkstra),248,12.34515,76.63214,584.5
+Standard Shortest Path (Dijkstra),249,12.345231,76.632125,584.5
+Standard Shortest Path (Dijkstra),250,12.345391,76.632093,584.5
+Standard Shortest Path (Dijkstra),251,12.345606,76.632053,584.5
+Standard Shortest Path (Dijkstra),252,12.345634,76.632046,584.5
+Standard Shortest Path (Dijkstra),253,12.345798,76.631962,584.5
+Standard Shortest Path (Dijkstra),254,12.346016,76.631686,584.5
+Standard Shortest Path (Dijkstra),255,12.346095,76.631576,584.5
+Standard Shortest Path (Dijkstra),256,12.346184,76.631448,584.5
+Standard Shortest Path (Dijkstra),257,12.346261,76.631332,584.5
+Standard Shortest Path (Dijkstra),258,12.346281,76.631246,584.5
+Standard Shortest Path (Dijkstra),259,12.346272,76.631159,584.5
+Standard Shortest Path (Dijkstra),260,12.346252,76.631056,584.5
+Standard Shortest Path (Dijkstra),261,12.346293,76.630994,584.5
+Standard Shortest Path (Dijkstra),262,12.346609,76.630923,584.5
+Standard Shortest Path (Dijkstra),263,12.346672,76.630827,584.5
+Standard Shortest Path (Dijkstra),264,12.346588,76.630386,584.5
+Standard Shortest Path (Dijkstra),265,12.346557,76.630229,584.5
+Standard Shortest Path (Dijkstra),266,12.346545,76.630157,584.5
+Standard Shortest Path (Dijkstra),267,12.346534,76.63009,584.5
+Standard Shortest Path (Dijkstra),268,12.346534,76.630088,584.5
+Standard Shortest Path (Dijkstra),269,12.346572,76.630019,584.5
+Standard Shortest Path (Dijkstra),270,12.346819,76.62997,584.5
+Standard Shortest Path (Dijkstra),271,12.346864,76.629886,584.5
+Standard Shortest Path (Dijkstra),272,12.346855,76.629383,584.5
+Standard Shortest Path (Dijkstra),273,12.346924,76.629238,584.5
+Standard Shortest Path (Dijkstra),274,12.347193,76.629017,584.5
+Standard Shortest Path (Dijkstra),275,12.347343,76.628885,584.5
+Standard Shortest Path (Dijkstra),276,12.347508,76.62873,584.5
+Standard Shortest Path (Dijkstra),277,12.347616,76.628643,584.5
+Standard Shortest Path (Dijkstra),278,12.347683,76.628593,584.5
+Standard Shortest Path (Dijkstra),279,12.347833,76.628471,584.5
+Standard Shortest Path (Dijkstra),280,12.348078,76.628253,584.5
+Standard Shortest Path (Dijkstra),281,12.34819,76.628151,584.5
+Standard Shortest Path (Dijkstra),282,12.348293,76.628053,584.5
+Standard Shortest Path (Dijkstra),283,12.348404,76.627939,584.5
+Standard Shortest Path (Dijkstra),284,12.348641,76.627686,584.5
+Standard Shortest Path (Dijkstra),285,12.348745,76.627618,584.5
+Standard Shortest Path (Dijkstra),286,12.349012,76.627487,584.5
+Standard Shortest Path (Dijkstra),287,12.349076,76.627376,584.5
+Standard Shortest Path (Dijkstra),288,12.349155,76.626681,584.5
+Standard Shortest Path (Dijkstra),289,12.349209,76.626608,584.5
+Standard Shortest Path (Dijkstra),290,12.349359,76.626584,584.5
+Standard Shortest Path (Dijkstra),291,12.349522,76.626569,584.5
+Standard Shortest Path (Dijkstra),292,12.349698,76.626566,584.5
+Standard Shortest Path (Dijkstra),293,12.349832,76.62656,584.5
+Standard Shortest Path (Dijkstra),294,12.349987,76.626549,584.5
+Standard Shortest Path (Dijkstra),295,12.350123,76.62654,584.5
+Standard Shortest Path (Dijkstra),296,12.350275,76.626529,584.5
+Standard Shortest Path (Dijkstra),297,12.350358,76.626441,584.5
+Standard Shortest Path (Dijkstra),298,12.350364,76.626145,584.5
+Standard Shortest Path (Dijkstra),299,12.350468,76.626078,584.5
+Standard Shortest Path (Dijkstra),300,12.350575,76.626069,584.5
+Standard Shortest Path (Dijkstra),301,12.350709,76.62606,584.5
+Standard Shortest Path (Dijkstra),302,12.350756,76.626058,584.5
+Standard Shortest Path (Dijkstra),303,12.350887,76.626051,584.5
+Standard Shortest Path (Dijkstra),304,12.351082,76.626039,584.5
+Standard Shortest Path (Dijkstra),305,12.351216,76.626026,584.5
+Standard Shortest Path (Dijkstra),306,12.351228,76.626024,584.5
+Standard Shortest Path (Dijkstra),307,12.35133,76.625947,584.5
+Standard Shortest Path (Dijkstra),308,12.351354,76.625843,584.5
+Standard Shortest Path (Dijkstra),309,12.351428,76.625665,584.5
+Standard Shortest Path (Dijkstra),310,12.351513,76.625537,584.5
+Standard Shortest Path (Dijkstra),311,12.351651,76.625415,584.5
+Standard Shortest Path (Dijkstra),312,12.351737,76.62536,584.5
+Standard Shortest Path (Dijkstra),313,12.351768,76.625337,584.5
+Standard Shortest Path (Dijkstra),314,12.351888,76.625254,584.5
+Standard Shortest Path (Dijkstra),315,12.352,76.625182,584.5
+Standard Shortest Path (Dijkstra),316,12.352216,76.625041,584.5
+Standard Shortest Path (Dijkstra),317,12.352367,76.624937,584.5
+Standard Shortest Path (Dijkstra),318,12.35242,76.62493,584.5
+Standard Shortest Path (Dijkstra),319,12.35242,76.624932,584.5
+Standard Shortest Path (Dijkstra),320,12.352496,76.624939,584.5
+Standard Shortest Path (Dijkstra),321,12.352931,76.624669,584.5
+Standard Shortest Path (Dijkstra),322,12.353325,76.624391,584.5
+Standard Shortest Path (Dijkstra),323,12.35427,76.623817,584.5
+Standard Shortest Path (Dijkstra),324,12.354374,76.623657,584.5
+Standard Shortest Path (Dijkstra),325,12.354407,76.623567,584.5
+Standard Shortest Path (Dijkstra),326,12.354419,76.623474,584.5
+Standard Shortest Path (Dijkstra),327,12.354403,76.623355,584.5
+Standard Shortest Path (Dijkstra),328,12.354391,76.623067,584.5
+Standard Shortest Path (Dijkstra),329,12.354348,76.622658,584.5
+Standard Shortest Path (Dijkstra),330,12.354309,76.622051,584.5
+Standard Shortest Path (Dijkstra),331,12.354221,76.62063,584.5
+Standard Shortest Path (Dijkstra),332,12.354151,76.619648,584.5
+Standard Shortest Path (Dijkstra),333,12.354121,76.618609,584.5
+Standard Shortest Path (Dijkstra),334,12.354118,76.618534,584.5
+Standard Shortest Path (Dijkstra),335,12.354024,76.616625,584.5
+Standard Shortest Path (Dijkstra),336,12.354024,76.616615,584.5
+Standard Shortest Path (Dijkstra),337,12.353974,76.615577,584.5
+Standard Shortest Path (Dijkstra),338,12.353964,76.615348,584.5
+Standard Shortest Path (Dijkstra),339,12.353963,76.615029,584.5
+Standard Shortest Path (Dijkstra),340,12.353962,76.614974,584.5
+Standard Shortest Path (Dijkstra),341,12.353944,76.614735,584.5
+Standard Shortest Path (Dijkstra),342,12.353912,76.614228,584.5
+Standard Shortest Path (Dijkstra),343,12.353901,76.614127,584.5
+Standard Shortest Path (Dijkstra),344,12.353843,76.613792,584.5
+Standard Shortest Path (Dijkstra),345,12.353599,76.612888,584.5
+Standard Shortest Path (Dijkstra),346,12.353542,76.612504,584.5
+Standard Shortest Path (Dijkstra),347,12.353523,76.611391,584.5
+Standard Shortest Path (Dijkstra),348,12.353519,76.611306,584.5
+Standard Shortest Path (Dijkstra),349,12.353527,76.607754,584.5
+Standard Shortest Path (Dijkstra),350,12.353449,76.607387,584.5
+Standard Shortest Path (Dijkstra),351,12.353423,76.607303,584.5
+Standard Shortest Path (Dijkstra),352,12.353374,76.607229,584.5
+Standard Shortest Path (Dijkstra),353,12.353335,76.607141,584.5
+Standard Shortest Path (Dijkstra),354,12.352662,76.605858,584.5
+Standard Shortest Path (Dijkstra),355,12.352556,76.605689,584.5
+Standard Shortest Path (Dijkstra),356,12.352001,76.605236,584.5
+Standard Shortest Path (Dijkstra),357,12.351846,76.605089,584.5
+Standard Shortest Path (Dijkstra),358,12.351693,76.604834,584.5
+Standard Shortest Path (Dijkstra),359,12.351589,76.604474,584.5
+Standard Shortest Path (Dijkstra),360,12.351589,76.604336,584.5
+Standard Shortest Path (Dijkstra),361,12.351589,76.604331,584.5
+Standard Shortest Path (Dijkstra),362,12.351603,76.604154,584.5
+Standard Shortest Path (Dijkstra),363,12.351634,76.603921,584.5
+Standard Shortest Path (Dijkstra),364,12.3517,76.602991,584.5
+Standard Shortest Path (Dijkstra),365,12.351693,76.602605,584.5
+Standard Shortest Path (Dijkstra),366,12.35167,76.60223,584.5
+Standard Shortest Path (Dijkstra),367,12.351593,76.601982,584.5
+Standard Shortest Path (Dijkstra),368,12.351472,76.601873,584.5
+Standard Shortest Path (Dijkstra),369,12.351222,76.601849,584.5
+Standard Shortest Path (Dijkstra),370,12.350024,76.6018,584.5
+Standard Shortest Path (Dijkstra),371,12.349327,76.601848,584.5
+Standard Shortest Path (Dijkstra),372,12.348633,76.601914,584.5
+Standard Shortest Path (Dijkstra),373,12.346998,76.601966,584.5
+Standard Shortest Path (Dijkstra),374,12.34617,76.601982,584.5
+Standard Shortest Path (Dijkstra),375,12.345356,76.602027,584.5
+Standard Shortest Path (Dijkstra),376,12.344276,76.602195,584.5
+Standard Shortest Path (Dijkstra),377,12.343913,76.602247,584.5
+Standard Shortest Path (Dijkstra),378,12.343506,76.602164,584.5
+Standard Shortest Path (Dijkstra),379,12.343173,76.602008,584.5
+Standard Shortest Path (Dijkstra),380,12.342936,76.60188,584.5
+Standard Shortest Path (Dijkstra),381,12.341864,76.601337,584.5
+Standard Shortest Path (Dijkstra),382,12.340645,76.600721,584.5
+Standard Shortest Path (Dijkstra),383,12.340093,76.600421,584.5
+Standard Shortest Path (Dijkstra),384,12.338985,76.599895,584.5
+Standard Shortest Path (Dijkstra),385,12.338319,76.599629,584.5
+Standard Shortest Path (Dijkstra),386,12.338251,76.599604,584.5
+Standard Shortest Path (Dijkstra),387,12.33802,76.599523,584.5
+Standard Shortest Path (Dijkstra),388,12.337686,76.599416,584.5
+Standard Shortest Path (Dijkstra),389,12.337008,76.599161,584.5
+Standard Shortest Path (Dijkstra),390,12.336267,76.598935,584.5
+Standard Shortest Path (Dijkstra),391,12.335668,76.59885,584.5
+Standard Shortest Path (Dijkstra),392,12.33496,76.598778,584.5
+Standard Shortest Path (Dijkstra),393,12.33478,76.598761,584.5
+Standard Shortest Path (Dijkstra),394,12.334402,76.598722,584.5
+Standard Shortest Path (Dijkstra),395,12.333671,76.598646,584.5
+Standard Shortest Path (Dijkstra),396,12.333129,76.598617,584.5
+Standard Shortest Path (Dijkstra),397,12.332934,76.598595,584.5
+Standard Shortest Path (Dijkstra),398,12.332715,76.598557,584.5
+AI Quickest Path (ML Ensemble),1,12.312262,76.649017,537.1
+AI Quickest Path (ML Ensemble),2,12.312142,76.649759,537.1
+AI Quickest Path (ML Ensemble),3,12.312088,76.649753,537.1
+AI Quickest Path (ML Ensemble),4,12.312132,76.649348,537.1
+AI Quickest Path (ML Ensemble),5,12.312155,76.649166,537.1
+AI Quickest Path (ML Ensemble),6,12.312177,76.648957,537.1
+AI Quickest Path (ML Ensemble),7,12.312206,76.648852,537.1
+AI Quickest Path (ML Ensemble),8,12.31235,76.648456,537.1
+AI Quickest Path (ML Ensemble),9,12.312391,76.648325,537.1
+AI Quickest Path (ML Ensemble),10,12.31255,76.647714,537.1
+AI Quickest Path (ML Ensemble),11,12.312634,76.647618,537.1
+AI Quickest Path (ML Ensemble),12,12.312635,76.647619,537.1
+AI Quickest Path (ML Ensemble),13,12.312637,76.647613,537.1
+AI Quickest Path (ML Ensemble),14,12.312844,76.647723,537.1
+AI Quickest Path (ML Ensemble),15,12.31307,76.647772,537.1
+AI Quickest Path (ML Ensemble),16,12.313246,76.647787,537.1
+AI Quickest Path (ML Ensemble),17,12.313427,76.64779,537.1
+AI Quickest Path (ML Ensemble),18,12.313781,76.647799,537.1
+AI Quickest Path (ML Ensemble),19,12.314719,76.647798,537.1
+AI Quickest Path (ML Ensemble),20,12.314809,76.647798,537.1
+AI Quickest Path (ML Ensemble),21,12.314811,76.647798,537.1
+AI Quickest Path (ML Ensemble),22,12.315044,76.647901,537.1
+AI Quickest Path (ML Ensemble),23,12.315319,76.647903,537.1
+AI Quickest Path (ML Ensemble),24,12.315404,76.647903,537.1
+AI Quickest Path (ML Ensemble),25,12.317717,76.647918,537.1
+AI Quickest Path (ML Ensemble),26,12.317856,76.647914,537.1
+AI Quickest Path (ML Ensemble),27,12.318367,76.647894,537.1
+AI Quickest Path (ML Ensemble),28,12.318475,76.647887,537.1
+AI Quickest Path (ML Ensemble),29,12.318607,76.647879,537.1
+AI Quickest Path (ML Ensemble),30,12.318699,76.647874,537.1
+AI Quickest Path (ML Ensemble),31,12.319841,76.647804,537.1
+AI Quickest Path (ML Ensemble),32,12.320149,76.647685,537.1
+AI Quickest Path (ML Ensemble),33,12.320665,76.647276,537.1
+AI Quickest Path (ML Ensemble),34,12.32078,76.647185,537.1
+AI Quickest Path (ML Ensemble),35,12.320857,76.647124,537.1
+AI Quickest Path (ML Ensemble),36,12.320916,76.647077,537.1
+AI Quickest Path (ML Ensemble),37,12.321028,76.646984,537.1
+AI Quickest Path (ML Ensemble),38,12.321423,76.646704,537.1
+AI Quickest Path (ML Ensemble),39,12.321493,76.646655,537.1
+AI Quickest Path (ML Ensemble),40,12.321756,76.646469,537.1
+AI Quickest Path (ML Ensemble),41,12.322461,76.645997,537.1
+AI Quickest Path (ML Ensemble),42,12.322612,76.645879,537.1
+AI Quickest Path (ML Ensemble),43,12.322643,76.64585,537.1
+AI Quickest Path (ML Ensemble),44,12.323939,76.645316,537.1
+AI Quickest Path (ML Ensemble),45,12.323969,76.645171,537.1
+AI Quickest Path (ML Ensemble),46,12.32392,76.645027,537.1
+AI Quickest Path (ML Ensemble),47,12.323877,76.644902,537.1
+AI Quickest Path (ML Ensemble),48,12.323854,76.644838,537.1
+AI Quickest Path (ML Ensemble),49,12.323811,76.644713,537.1
+AI Quickest Path (ML Ensemble),50,12.323668,76.6443,537.1
+AI Quickest Path (ML Ensemble),51,12.323449,76.643669,537.1
+AI Quickest Path (ML Ensemble),52,12.323412,76.643521,537.1
+AI Quickest Path (ML Ensemble),53,12.323372,76.643397,537.1
+AI Quickest Path (ML Ensemble),54,12.32332,76.643271,537.1
+AI Quickest Path (ML Ensemble),55,12.323063,76.642661,537.1
+AI Quickest Path (ML Ensemble),56,12.323037,76.642561,537.1
+AI Quickest Path (ML Ensemble),57,12.323052,76.642459,537.1
+AI Quickest Path (ML Ensemble),58,12.323121,76.642279,537.1
+AI Quickest Path (ML Ensemble),59,12.323236,76.642053,537.1
+AI Quickest Path (ML Ensemble),60,12.323304,76.641979,537.1
+AI Quickest Path (ML Ensemble),61,12.32334,76.641911,537.1
+AI Quickest Path (ML Ensemble),62,12.323338,76.641754,537.1
+AI Quickest Path (ML Ensemble),63,12.323336,76.641743,537.1
+AI Quickest Path (ML Ensemble),64,12.323242,76.641448,537.1
+AI Quickest Path (ML Ensemble),65,12.323229,76.641387,537.1
+AI Quickest Path (ML Ensemble),66,12.323147,76.641002,537.1
+AI Quickest Path (ML Ensemble),67,12.323013,76.64037,537.1
+AI Quickest Path (ML Ensemble),68,12.322937,76.639955,537.1
+AI Quickest Path (ML Ensemble),69,12.322876,76.639575,537.1
+AI Quickest Path (ML Ensemble),70,12.322852,76.6391,537.1
+AI Quickest Path (ML Ensemble),71,12.322836,76.638916,537.1
+AI Quickest Path (ML Ensemble),72,12.322739,76.638391,537.1
+AI Quickest Path (ML Ensemble),73,12.322722,76.638298,537.1
+AI Quickest Path (ML Ensemble),74,12.32246,76.636878,537.1
+AI Quickest Path (ML Ensemble),75,12.32241,76.636846,537.1
+AI Quickest Path (ML Ensemble),76,12.322408,76.636845,537.1
+AI Quickest Path (ML Ensemble),77,12.322389,76.636824,537.1
+AI Quickest Path (ML Ensemble),78,12.322388,76.636823,537.1
+AI Quickest Path (ML Ensemble),79,12.322382,76.63676,537.1
+AI Quickest Path (ML Ensemble),80,12.322383,76.636758,537.1
+AI Quickest Path (ML Ensemble),81,12.322431,76.636717,537.1
+AI Quickest Path (ML Ensemble),82,12.322432,76.636717,537.1
+AI Quickest Path (ML Ensemble),83,12.322512,76.636749,537.1
+AI Quickest Path (ML Ensemble),84,12.323601,76.63567,537.1
+AI Quickest Path (ML Ensemble),85,12.323695,76.635577,537.1
+AI Quickest Path (ML Ensemble),86,12.324808,76.634463,537.1
+AI Quickest Path (ML Ensemble),87,12.324901,76.63437,537.1
+AI Quickest Path (ML Ensemble),88,12.325097,76.634173,537.1
+AI Quickest Path (ML Ensemble),89,12.325165,76.634107,537.1
+AI Quickest Path (ML Ensemble),90,12.325267,76.634014,537.1
+AI Quickest Path (ML Ensemble),91,12.325294,76.63395,537.1
+AI Quickest Path (ML Ensemble),92,12.325617,76.633656,537.1
+AI Quickest Path (ML Ensemble),93,12.325848,76.633413,537.1
+AI Quickest Path (ML Ensemble),94,12.326004,76.633246,537.1
+AI Quickest Path (ML Ensemble),95,12.326138,76.633125,537.1
+AI Quickest Path (ML Ensemble),96,12.326769,76.632497,537.1
+AI Quickest Path (ML Ensemble),97,12.326892,76.632379,537.1
+AI Quickest Path (ML Ensemble),98,12.327079,76.6322,537.1
+AI Quickest Path (ML Ensemble),99,12.327182,76.632101,537.1
+AI Quickest Path (ML Ensemble),100,12.32764,76.631664,537.1
+AI Quickest Path (ML Ensemble),101,12.327735,76.631573,537.1
+AI Quickest Path (ML Ensemble),102,12.328972,76.63039,537.1
+AI Quickest Path (ML Ensemble),103,12.329067,76.6303,537.1
+AI Quickest Path (ML Ensemble),104,12.329357,76.630022,537.1
+AI Quickest Path (ML Ensemble),105,12.329451,76.629928,537.1
+AI Quickest Path (ML Ensemble),106,12.329765,76.629596,537.1
+AI Quickest Path (ML Ensemble),107,12.329859,76.629497,537.1
+AI Quickest Path (ML Ensemble),108,12.329956,76.629394,537.1
+AI Quickest Path (ML Ensemble),109,12.330049,76.629299,537.1
+AI Quickest Path (ML Ensemble),110,12.330551,76.628805,537.1
+AI Quickest Path (ML Ensemble),111,12.33079,76.628622,537.1
+AI Quickest Path (ML Ensemble),112,12.330792,76.628621,537.1
+AI Quickest Path (ML Ensemble),113,12.330919,76.628577,537.1
+AI Quickest Path (ML Ensemble),114,12.330988,76.628564,537.1
+AI Quickest Path (ML Ensemble),115,12.331212,76.628486,537.1
+AI Quickest Path (ML Ensemble),116,12.331454,76.628449,537.1
+AI Quickest Path (ML Ensemble),117,12.331445,76.62842,537.1
+AI Quickest Path (ML Ensemble),118,12.331418,76.628224,537.1
+AI Quickest Path (ML Ensemble),119,12.331423,76.628203,537.1
+AI Quickest Path (ML Ensemble),120,12.331442,76.628123,537.1
+AI Quickest Path (ML Ensemble),121,12.331394,76.627727,537.1
+AI Quickest Path (ML Ensemble),122,12.331382,76.627131,537.1
+AI Quickest Path (ML Ensemble),123,12.331388,76.627005,537.1
+AI Quickest Path (ML Ensemble),124,12.33141,76.626798,537.1
+AI Quickest Path (ML Ensemble),125,12.33145,76.625766,537.1
+AI Quickest Path (ML Ensemble),126,12.331578,76.624975,537.1
+AI Quickest Path (ML Ensemble),127,12.331607,76.624859,537.1
+AI Quickest Path (ML Ensemble),128,12.331722,76.624539,537.1
+AI Quickest Path (ML Ensemble),129,12.331847,76.624351,537.1
+AI Quickest Path (ML Ensemble),130,12.332233,76.624049,537.1
+AI Quickest Path (ML Ensemble),131,12.332324,76.62401,537.1
+AI Quickest Path (ML Ensemble),132,12.332466,76.623951,537.1
+AI Quickest Path (ML Ensemble),133,12.332718,76.62388,537.1
+AI Quickest Path (ML Ensemble),134,12.333246,76.623734,537.1
+AI Quickest Path (ML Ensemble),135,12.333673,76.623665,537.1
+AI Quickest Path (ML Ensemble),136,12.334104,76.623657,537.1
+AI Quickest Path (ML Ensemble),137,12.334417,76.623687,537.1
+AI Quickest Path (ML Ensemble),138,12.334547,76.6237,537.1
+AI Quickest Path (ML Ensemble),139,12.33482,76.623729,537.1
+AI Quickest Path (ML Ensemble),140,12.334951,76.623754,537.1
+AI Quickest Path (ML Ensemble),141,12.335261,76.623835,537.1
+AI Quickest Path (ML Ensemble),142,12.335832,76.62391,537.1
+AI Quickest Path (ML Ensemble),143,12.335961,76.623926,537.1
+AI Quickest Path (ML Ensemble),144,12.336278,76.623968,537.1
+AI Quickest Path (ML Ensemble),145,12.336408,76.623985,537.1
+AI Quickest Path (ML Ensemble),146,12.336418,76.623986,537.1
+AI Quickest Path (ML Ensemble),147,12.336595,76.624001,537.1
+AI Quickest Path (ML Ensemble),148,12.336725,76.624012,537.1
+AI Quickest Path (ML Ensemble),149,12.336988,76.624034,537.1
+AI Quickest Path (ML Ensemble),150,12.337118,76.624044,537.1
+AI Quickest Path (ML Ensemble),151,12.337276,76.624058,537.1
+AI Quickest Path (ML Ensemble),152,12.337406,76.624069,537.1
+AI Quickest Path (ML Ensemble),153,12.337678,76.624091,537.1
+AI Quickest Path (ML Ensemble),154,12.337814,76.624104,537.1
+AI Quickest Path (ML Ensemble),155,12.338016,76.624124,537.1
+AI Quickest Path (ML Ensemble),156,12.338145,76.624138,537.1
+AI Quickest Path (ML Ensemble),157,12.338265,76.624153,537.1
+AI Quickest Path (ML Ensemble),158,12.338395,76.624168,537.1
+AI Quickest Path (ML Ensemble),159,12.338505,76.624182,537.1
+AI Quickest Path (ML Ensemble),160,12.338635,76.624197,537.1
+AI Quickest Path (ML Ensemble),161,12.338743,76.624211,537.1
+AI Quickest Path (ML Ensemble),162,12.338872,76.624226,537.1
+AI Quickest Path (ML Ensemble),163,12.338999,76.624242,537.1
+AI Quickest Path (ML Ensemble),164,12.33913,76.624271,537.1
+AI Quickest Path (ML Ensemble),165,12.339268,76.624313,537.1
+AI Quickest Path (ML Ensemble),166,12.339394,76.624353,537.1
+AI Quickest Path (ML Ensemble),167,12.3395,76.624386,537.1
+AI Quickest Path (ML Ensemble),168,12.339627,76.624422,537.1
+AI Quickest Path (ML Ensemble),169,12.339705,76.624443,537.1
+AI Quickest Path (ML Ensemble),170,12.339832,76.624477,537.1
+AI Quickest Path (ML Ensemble),171,12.339935,76.624505,537.1
+AI Quickest Path (ML Ensemble),172,12.340062,76.624538,537.1
+AI Quickest Path (ML Ensemble),173,12.340098,76.624546,537.1
+AI Quickest Path (ML Ensemble),174,12.34018,76.624565,537.1
+AI Quickest Path (ML Ensemble),175,12.340469,76.624628,537.1
+AI Quickest Path (ML Ensemble),176,12.340624,76.624663,537.1
+AI Quickest Path (ML Ensemble),177,12.340737,76.62469,537.1
+AI Quickest Path (ML Ensemble),178,12.340836,76.624721,537.1
+AI Quickest Path (ML Ensemble),179,12.340886,76.624742,537.1
+AI Quickest Path (ML Ensemble),180,12.341023,76.624811,537.1
+AI Quickest Path (ML Ensemble),181,12.341661,76.625153,537.1
+AI Quickest Path (ML Ensemble),182,12.341824,76.625238,537.1
+AI Quickest Path (ML Ensemble),183,12.341937,76.6253,537.1
+AI Quickest Path (ML Ensemble),184,12.342053,76.625373,537.1
+AI Quickest Path (ML Ensemble),185,12.342113,76.625417,537.1
+AI Quickest Path (ML Ensemble),186,12.342212,76.625496,537.1
+AI Quickest Path (ML Ensemble),187,12.34223,76.625512,537.1
+AI Quickest Path (ML Ensemble),188,12.342287,76.62557,537.1
+AI Quickest Path (ML Ensemble),189,12.342565,76.625885,537.1
+AI Quickest Path (ML Ensemble),190,12.342624,76.62595,537.1
+AI Quickest Path (ML Ensemble),191,12.342768,76.626103,537.1
+AI Quickest Path (ML Ensemble),192,12.342873,76.626164,537.1
+AI Quickest Path (ML Ensemble),193,12.343318,76.626689,537.1
+AI Quickest Path (ML Ensemble),194,12.343355,76.626724,537.1
+AI Quickest Path (ML Ensemble),195,12.343391,76.626754,537.1
+AI Quickest Path (ML Ensemble),196,12.343438,76.626786,537.1
+AI Quickest Path (ML Ensemble),197,12.343453,76.626793,537.1
+AI Quickest Path (ML Ensemble),198,12.343538,76.626828,537.1
+AI Quickest Path (ML Ensemble),199,12.343601,76.626846,537.1
+AI Quickest Path (ML Ensemble),200,12.343669,76.626859,537.1
+AI Quickest Path (ML Ensemble),201,12.343771,76.626875,537.1
+AI Quickest Path (ML Ensemble),202,12.343864,76.626783,537.1
+AI Quickest Path (ML Ensemble),203,12.343913,76.626424,537.1
+AI Quickest Path (ML Ensemble),204,12.343945,76.62611,537.1
+AI Quickest Path (ML Ensemble),205,12.344037,76.62588,537.1
+AI Quickest Path (ML Ensemble),206,12.34404,76.625876,537.1
+AI Quickest Path (ML Ensemble),207,12.344116,76.625842,537.1
+AI Quickest Path (ML Ensemble),208,12.344193,76.625846,537.1
+AI Quickest Path (ML Ensemble),209,12.344329,76.625854,537.1
+AI Quickest Path (ML Ensemble),210,12.34456,76.62587,537.1
+AI Quickest Path (ML Ensemble),211,12.344693,76.625887,537.1
+AI Quickest Path (ML Ensemble),212,12.344804,76.625907,537.1
+AI Quickest Path (ML Ensemble),213,12.344935,76.625927,537.1
+AI Quickest Path (ML Ensemble),214,12.345216,76.625964,537.1
+AI Quickest Path (ML Ensemble),215,12.345346,76.625987,537.1
+AI Quickest Path (ML Ensemble),216,12.345619,76.62605,537.1
+AI Quickest Path (ML Ensemble),217,12.34575,76.62611,537.1
+AI Quickest Path (ML Ensemble),218,12.345835,76.626167,537.1
+AI Quickest Path (ML Ensemble),219,12.346014,76.626195,537.1
+AI Quickest Path (ML Ensemble),220,12.346262,76.626236,537.1
+AI Quickest Path (ML Ensemble),221,12.346613,76.626302,537.1
+AI Quickest Path (ML Ensemble),222,12.346744,76.626331,537.1
+AI Quickest Path (ML Ensemble),223,12.346928,76.626376,537.1
+AI Quickest Path (ML Ensemble),224,12.347056,76.626409,537.1
+AI Quickest Path (ML Ensemble),225,12.347229,76.626456,537.1
+AI Quickest Path (ML Ensemble),226,12.347359,76.626485,537.1
+AI Quickest Path (ML Ensemble),227,12.347698,76.626551,537.1
+AI Quickest Path (ML Ensemble),228,12.347741,76.626612,537.1
+AI Quickest Path (ML Ensemble),229,12.347734,76.626664,537.1
+AI Quickest Path (ML Ensemble),230,12.34773,76.626685,537.1
+AI Quickest Path (ML Ensemble),231,12.347804,76.626773,537.1
+AI Quickest Path (ML Ensemble),232,12.348003,76.626776,537.1
+AI Quickest Path (ML Ensemble),233,12.348141,76.626772,537.1
+AI Quickest Path (ML Ensemble),234,12.348305,76.626762,537.1
+AI Quickest Path (ML Ensemble),235,12.348446,76.62675,537.1
+AI Quickest Path (ML Ensemble),236,12.3486,76.626734,537.1
+AI Quickest Path (ML Ensemble),237,12.348756,76.626702,537.1
+AI Quickest Path (ML Ensemble),238,12.348987,76.626652,537.1
+AI Quickest Path (ML Ensemble),239,12.349209,76.626608,537.1
+AI Quickest Path (ML Ensemble),240,12.349359,76.626584,537.1
+AI Quickest Path (ML Ensemble),241,12.349522,76.626569,537.1
+AI Quickest Path (ML Ensemble),242,12.349698,76.626566,537.1
+AI Quickest Path (ML Ensemble),243,12.349832,76.62656,537.1
+AI Quickest Path (ML Ensemble),244,12.349987,76.626549,537.1
+AI Quickest Path (ML Ensemble),245,12.350123,76.62654,537.1
+AI Quickest Path (ML Ensemble),246,12.350275,76.626529,537.1
+AI Quickest Path (ML Ensemble),247,12.350358,76.626441,537.1
+AI Quickest Path (ML Ensemble),248,12.350364,76.626145,537.1
+AI Quickest Path (ML Ensemble),249,12.350468,76.626078,537.1
+AI Quickest Path (ML Ensemble),250,12.350575,76.626069,537.1
+AI Quickest Path (ML Ensemble),251,12.350709,76.62606,537.1
+AI Quickest Path (ML Ensemble),252,12.350756,76.626058,537.1
+AI Quickest Path (ML Ensemble),253,12.350887,76.626051,537.1
+AI Quickest Path (ML Ensemble),254,12.351082,76.626039,537.1
+AI Quickest Path (ML Ensemble),255,12.351216,76.626026,537.1
+AI Quickest Path (ML Ensemble),256,12.351228,76.626024,537.1
+AI Quickest Path (ML Ensemble),257,12.35133,76.625947,537.1
+AI Quickest Path (ML Ensemble),258,12.351354,76.625843,537.1
+AI Quickest Path (ML Ensemble),259,12.351428,76.625665,537.1
+AI Quickest Path (ML Ensemble),260,12.351513,76.625537,537.1
+AI Quickest Path (ML Ensemble),261,12.351651,76.625415,537.1
+AI Quickest Path (ML Ensemble),262,12.351737,76.62536,537.1
+AI Quickest Path (ML Ensemble),263,12.351768,76.625337,537.1
+AI Quickest Path (ML Ensemble),264,12.351888,76.625254,537.1
+AI Quickest Path (ML Ensemble),265,12.352,76.625182,537.1
+AI Quickest Path (ML Ensemble),266,12.352216,76.625041,537.1
+AI Quickest Path (ML Ensemble),267,12.352367,76.624937,537.1
+AI Quickest Path (ML Ensemble),268,12.35242,76.62493,537.1
+AI Quickest Path (ML Ensemble),269,12.35242,76.624932,537.1
+AI Quickest Path (ML Ensemble),270,12.352496,76.624939,537.1
+AI Quickest Path (ML Ensemble),271,12.352931,76.624669,537.1
+AI Quickest Path (ML Ensemble),272,12.353325,76.624391,537.1
+AI Quickest Path (ML Ensemble),273,12.35427,76.623817,537.1
+AI Quickest Path (ML Ensemble),274,12.354374,76.623657,537.1
+AI Quickest Path (ML Ensemble),275,12.354407,76.623567,537.1
+AI Quickest Path (ML Ensemble),276,12.354419,76.623474,537.1
+AI Quickest Path (ML Ensemble),277,12.354403,76.623355,537.1
+AI Quickest Path (ML Ensemble),278,12.354391,76.623067,537.1
+AI Quickest Path (ML Ensemble),279,12.354348,76.622658,537.1
+AI Quickest Path (ML Ensemble),280,12.354309,76.622051,537.1
+AI Quickest Path (ML Ensemble),281,12.354221,76.62063,537.1
+AI Quickest Path (ML Ensemble),282,12.354151,76.619648,537.1
+AI Quickest Path (ML Ensemble),283,12.354121,76.618609,537.1
+AI Quickest Path (ML Ensemble),284,12.354118,76.618534,537.1
+AI Quickest Path (ML Ensemble),285,12.354024,76.616625,537.1
+AI Quickest Path (ML Ensemble),286,12.354024,76.616615,537.1
+AI Quickest Path (ML Ensemble),287,12.353974,76.615577,537.1
+AI Quickest Path (ML Ensemble),288,12.353964,76.615348,537.1
+AI Quickest Path (ML Ensemble),289,12.353963,76.615029,537.1
+AI Quickest Path (ML Ensemble),290,12.353962,76.614974,537.1
+AI Quickest Path (ML Ensemble),291,12.353944,76.614735,537.1
+AI Quickest Path (ML Ensemble),292,12.353912,76.614228,537.1
+AI Quickest Path (ML Ensemble),293,12.353901,76.614127,537.1
+AI Quickest Path (ML Ensemble),294,12.353843,76.613792,537.1
+AI Quickest Path (ML Ensemble),295,12.353599,76.612888,537.1
+AI Quickest Path (ML Ensemble),296,12.353542,76.612504,537.1
+AI Quickest Path (ML Ensemble),297,12.353523,76.611391,537.1
+AI Quickest Path (ML Ensemble),298,12.353519,76.611306,537.1
+AI Quickest Path (ML Ensemble),299,12.353527,76.607754,537.1
+AI Quickest Path (ML Ensemble),300,12.353449,76.607387,537.1
+AI Quickest Path (ML Ensemble),301,12.353423,76.607303,537.1
+AI Quickest Path (ML Ensemble),302,12.353374,76.607229,537.1
+AI Quickest Path (ML Ensemble),303,12.353335,76.607141,537.1
+AI Quickest Path (ML Ensemble),304,12.352662,76.605858,537.1
+AI Quickest Path (ML Ensemble),305,12.352556,76.605689,537.1
+AI Quickest Path (ML Ensemble),306,12.352001,76.605236,537.1
+AI Quickest Path (ML Ensemble),307,12.351846,76.605089,537.1
+AI Quickest Path (ML Ensemble),308,12.351693,76.604834,537.1
+AI Quickest Path (ML Ensemble),309,12.351589,76.604474,537.1
+AI Quickest Path (ML Ensemble),310,12.351589,76.604336,537.1
+AI Quickest Path (ML Ensemble),311,12.351589,76.604331,537.1
+AI Quickest Path (ML Ensemble),312,12.351603,76.604154,537.1
+AI Quickest Path (ML Ensemble),313,12.351634,76.603921,537.1
+AI Quickest Path (ML Ensemble),314,12.3517,76.602991,537.1
+AI Quickest Path (ML Ensemble),315,12.351693,76.602605,537.1
+AI Quickest Path (ML Ensemble),316,12.35167,76.60223,537.1
+AI Quickest Path (ML Ensemble),317,12.351593,76.601982,537.1
+AI Quickest Path (ML Ensemble),318,12.351472,76.601873,537.1
+AI Quickest Path (ML Ensemble),319,12.351222,76.601849,537.1
+AI Quickest Path (ML Ensemble),320,12.350024,76.6018,537.1
+AI Quickest Path (ML Ensemble),321,12.349327,76.601848,537.1
+AI Quickest Path (ML Ensemble),322,12.348633,76.601914,537.1
+AI Quickest Path (ML Ensemble),323,12.346998,76.601966,537.1
+AI Quickest Path (ML Ensemble),324,12.34617,76.601982,537.1
+AI Quickest Path (ML Ensemble),325,12.345356,76.602027,537.1
+AI Quickest Path (ML Ensemble),326,12.344276,76.602195,537.1
+AI Quickest Path (ML Ensemble),327,12.343913,76.602247,537.1
+AI Quickest Path (ML Ensemble),328,12.343506,76.602164,537.1
+AI Quickest Path (ML Ensemble),329,12.343173,76.602008,537.1
+AI Quickest Path (ML Ensemble),330,12.342936,76.60188,537.1
+AI Quickest Path (ML Ensemble),331,12.341864,76.601337,537.1
+AI Quickest Path (ML Ensemble),332,12.340645,76.600721,537.1
+AI Quickest Path (ML Ensemble),333,12.340093,76.600421,537.1
+AI Quickest Path (ML Ensemble),334,12.338985,76.599895,537.1
+AI Quickest Path (ML Ensemble),335,12.338319,76.599629,537.1
+AI Quickest Path (ML Ensemble),336,12.338251,76.599604,537.1
+AI Quickest Path (ML Ensemble),337,12.33802,76.599523,537.1
+AI Quickest Path (ML Ensemble),338,12.337686,76.599416,537.1
+AI Quickest Path (ML Ensemble),339,12.337008,76.599161,537.1
+AI Quickest Path (ML Ensemble),340,12.336267,76.598935,537.1
+AI Quickest Path (ML Ensemble),341,12.335668,76.59885,537.1
+AI Quickest Path (ML Ensemble),342,12.33496,76.598778,537.1
+AI Quickest Path (ML Ensemble),343,12.33478,76.598761,537.1
+AI Quickest Path (ML Ensemble),344,12.334402,76.598722,537.1
+AI Quickest Path (ML Ensemble),345,12.333671,76.598646,537.1
+AI Quickest Path (ML Ensemble),346,12.333129,76.598617,537.1
+AI Quickest Path (ML Ensemble),347,12.332934,76.598595,537.1
+AI Quickest Path (ML Ensemble),348,12.332715,76.598557,537.1

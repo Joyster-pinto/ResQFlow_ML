@@ -63,8 +63,8 @@ def main():
     # From K.R. Hospital
     hosp_lat, hosp_lon = 12.3131, 76.6496
     
-    # Destination arbitrarily slightly far
-    dest_lat, dest_lon = 12.3368, 76.6017
+    # Destination Udayagiri
+    dest_lat, dest_lon = 12.32493, 76.67711
     
     src_edge = find_nearest_edge(hosp_lat, hosp_lon)
     dst_edge = find_nearest_edge(dest_lat, dest_lon)
@@ -119,21 +119,48 @@ def main():
         
         print(f"Evaluated {label}: ML Path {ml_time:.1f}s / Dijkstra {dj_time:.1f}s")
         
+        # Plotting the routes for this scenario
+        fig, ax = plt.subplots(figsize=(10, 10))
+        
+        # Extract coords
+        ml_y = [pt['lat'] for pt in res["ml"].get("coordinates", [])]
+        ml_x = [pt['lon'] for pt in res["ml"].get("coordinates", [])]
+        dj_y = [pt['lat'] for pt in res["dijkstra"].get("coordinates", [])]
+        dj_x = [pt['lon'] for pt in res["dijkstra"].get("coordinates", [])]
+        
+        # Plot paths
+        ax.plot(dj_x, dj_y, label='Dijkstra Shortest Path', color='red', linewidth=4, alpha=0.6)
+        ax.plot(ml_x, ml_y, label='ML Fastest Path', color='blue', linewidth=4, alpha=0.8, linestyle='--')
+        
+        # Source/Dest
+        ax.scatter([hosp_lon], [hosp_lat], color='green', s=150, label='Source', zorder=5)
+        ax.scatter([dest_lon], [dest_lat], color='purple', s=150, label='Destination', zorder=5)
+        
+        ax.set_title(f"Predicted Paths: {label}")
+        ax.legend()
+        ax.axis('off')
+        
+        out_dir = Path(__file__).parent.parent / "data" / "visuals"
+        out_dir.mkdir(exist_ok=True, parents=True)
+        safe_name = label.replace(" ", "_").replace("(", "").replace(")", "").replace(":", "").replace("+", "plus").lower()
+        out_img = out_dir / f"path_{safe_name}.png"
+        plt.savefig(out_img, dpi=150, bbox_inches='tight')
+        plt.close(fig)
+        
     df = pd.DataFrame(results)
     
     out_dir = Path(__file__).parent.parent / "data" / "visuals"
     out_dir.mkdir(exist_ok=True, parents=True)
     out_png = out_dir / "modifier_impact.png"
-    out_md = out_dir / "modifier_table.md"
+    out_csv = out_dir / "modifier_table.csv"
     out_json = out_dir / "modifier_paths.json"
     
     with open(out_json, "w") as f:
         json.dump(scenario_paths, f, indent=2)
     print(f"Saved full path predictions to {out_json}")
     
-    md_table = df.to_markdown(index=False)
-    with open(out_md, "w") as f:
-        f.write(md_table)
+    df.to_csv(out_csv, index=False)
+    print(f"Saved summary data to {out_csv}")
         
     # Plotting
     sns.set_theme(style="darkgrid")
@@ -144,7 +171,7 @@ def main():
     ax.bar([i + width/2 for i in x], df["ML Path Time (s)"], width, label='ML Ensemble (Fastest Path)', color='#63b3ed')
     
     ax.set_ylabel('Estimated Travel Time (seconds)')
-    ax.set_title('Impact of Environmental Modifiers on Route Travel Time (K.R. Hospital to Vijayanagar)')
+    ax.set_title('Impact of Environmental Modifiers on Route Travel Time (K.R. Hospital to Udayagiri)')
     ax.set_xticks(list(x))
     ax.set_xticklabels(df["Scenario"], rotation=45, ha='right')
     ax.legend()

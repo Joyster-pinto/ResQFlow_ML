@@ -1,0 +1,8 @@
+Scenario,Shortest Path Time (s),ML Path Time (s)
+"Ideal (Clear, Off-Peak)",258.7,247.3
+Rush Hour,312.5,270.3
+Rain (Off-Peak),395.1,367.3
+Rain + Rush Hour,476.8,381.0
+Fog + Rush Hour,852.4,672.8
+Incident: Accident Avoidance,621.4,536.0
+Worst Case (Rain+Rush+Accident),1582.5,1024.7
